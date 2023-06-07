@@ -1,58 +1,94 @@
 <template>
-  <form @submit.prevent="submitForm" class="login-form">
-    <div class="form-group">
-      <label for="username">Usuário:</label>
-      <input type="text" id="username" v-model="username">
+   <div class="row q-pa-md row-login">
+    <div class= "column d-flex justify-content-center align-items-center left-login">
+      <div class="col-5">
+        <h2 class="text-center mb-5 title-login">Faça o login</h2>
+        <form>
+          <div class=" login-form">
+           <div
+            label="E-mail"
+            label-for="email"
+            >
+            E-mail
+              <q-input
+                id="email"
+                type="email"
+                placeholder='Digite seu email'
+                autocomplete="off"
+                v-model="form.email"
+              ></q-input>
+        </div>
+
+            <q-form-group label-for="password"
+            >
+
+              <label class="d-flex justify-content-between">
+                Senha
+                <small><a href="#">Esqueceu sua senha?</a></small>
+              </label>
+                 <q-input
+                  id="password"
+                  type="password"
+                  placeholder="Digite sua senha"
+                  v-model="form.password"
+              ></q-input>
+
+            </q-form-group>
+
+            <q-button
+              type="submite"
+              variant="primary"
+              block
+              @click="login">
+              <i class="button-color"> Entrar</i>
+            </q-button>
+
+            <hr>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="password">Senha:</label>
-      <input type="password" id="password" v-model="password">
+
+    <div calss= "col-7 d-flex justify-content-center align-items-center img-login ">
+      <img src="../assets/school.svg"/>
     </div>
-    <div class="form-group">
-      <button type="submit" class="button-color" @click="redirectToHome">Entrar</button>
-    </div>
-  </form>
-</template>
+  </div>
+  </template>
 
 <script>
 import { defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
 
 export default defineComponent({
-  name: 'IndexPage',
-  setup () {
-    const router = useRouter()
 
-    const redirectToHome = () => {
-      router.push({ name: 'HomePage' })
-    }
-
+  data () {
     return {
-      redirectToHome
+      form: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    redirectToHome () {
+      this.$router.replace({ name: 'HomePage' })
     }
   }
 })
 </script>
 
-<style scoped>
+<style >
+
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
 .login-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
   align-items: center;
-  height: 100vh;
-}
-
-.form-group {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
-
-.form-group label {
-  width: 80px;
-  margin-right: 10px;
+  height: 50vh;
 }
 
 .button-color {
@@ -64,7 +100,23 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.button-color:hover {
-  background-color: #002956;
+.left-login {
+  background-color: #f2f2f2;
+}
+
+.row-login {
+  margin-left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.title.login {
+    font-weight: bold;
+}
+
+.img-login {
+   align-items: center;
+   width: 600px;
+   height: 600px;
 }
 </style>
