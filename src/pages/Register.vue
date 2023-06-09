@@ -1,38 +1,39 @@
 <template>
   <q-page padding>
-    <q-form class="row justfy-center" @submit.prevent="handleRegister">
-    <p class="col-12 text-h4 text-center">Register</p>
-    <div calss="clo-md-4 clo-sm-6 col-xs10">
+    <q-form @submit.prevent="handleRegister">
+      <div class="row justify-center">
+        <p class="col-12 text-h4 text-center">Register</p>
+        <div class="col-md-4 col-sm-6 col-xs-10">
 
-      <q-input
-     label="Name"
-     v-model="form.name"
-     />
-
-     <q-input
-     label="Email"
-     v-model="form.email"
-     />
-
-     <q-input
-      label="Password"
-      v-model="form.password"
-      />
-
-      <div class="full-width q-pt-md">
-        <q-btn
-        label="Regsiter"
-        color="primary"
-        class="full-width"
-        outline
-        rounder
-        size="lg"
-        type="submit"
+          <q-input
+        label="Name"
+        v-model="form.name"
         />
-      </div>
+
+        <q-input
+        label="Email"
+        v-model="form.email"
+        />
+
+        <q-input
+          label="Password"
+          v-model="form.password"
+          />
+
+          <div class="full-width q-pt-md">
+            <q-btn
+            label="Register"
+            color="primary"
+            class="full-width"
+            outline
+            rounder
+            size="lg"
+            type="submit"
+            />
+          </div>
 
     </div>
-
+  </div>
   </q-form>
   </q-page>
 </template>
