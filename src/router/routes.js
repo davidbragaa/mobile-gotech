@@ -1,23 +1,22 @@
-import LoginPage from 'pages/LoginPage.vue'
-import Homepage from 'pages/HomePage.vue'
-
 const routes = [
   {
     path: '/',
-    component: () => import('src/layout/LoginLayout.vue'),
+    component: () => import('layouts/LoginLayout.vue'),
     children: [
 
-      { path: '', name: 'LoginDefault', component: LoginPage },
-      { path: 'LoginPage', name: 'LoginPage', component: LoginPage }
+      { path: '', name: 'LoginDefault', component: () => import('pages/Login.vue') },
+      { path: 'login', name: 'login', component: () => import('pages/Login.vue') },
+      { path: 'register', name: 'register', component: () => import('pages/Register.vue') },
+      { path: 'email-confirmatios', name: 'email-confirmatios', component: () => import('pages/EmailConfirmation.vue') },
+      { path: 'me', name: 'me', component: () => import('pages/Me.vue') }
     ]
   },
   {
     path: '/',
-    component: () => import('src/pages/LoginPage.vue'),
+    component: () => import('layouts/MainLayout.vue'),
     children: [
 
-      { path: '', name: 'LoginPage', component: LoginPage },
-      { path: '', name: 'HomePage', component: Homepage }
+      { path: '', component: () => import('pages/Index.vue') }
     ]
   },
 

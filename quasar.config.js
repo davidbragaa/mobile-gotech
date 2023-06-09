@@ -28,7 +28,7 @@ module.exports = configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: [
-
+      'supabase',
       'axios'
     ],
 
@@ -58,7 +58,7 @@ module.exports = configure(function (/* ctx */) {
         node: 'node16'
       },
 
-      vueRouterMode: 'hash' // available values: 'hash', 'history'
+      vueRouterMode: 'history' // available values: 'hash', 'history'
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -90,7 +90,19 @@ module.exports = configure(function (/* ctx */) {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
-      config: {},
+      config: {
+        brand: {
+          primary: '#a1a1a1',
+          secondary: '#26A69A',
+          accent: '#9C27B0',
+          dark: '#1d1d1d',
+          'dark-page': '#121212',
+          positive: '#21BA45',
+          negative: '#C10015',
+          info: '#31CCEC',
+          warning: '#F2C037'
+        }
+      },
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
