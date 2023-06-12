@@ -8,7 +8,7 @@
       label="Email"
       v-model="form.email"
       lazy-rules=""
-      :rules="[val => (val && val,lengh > 0) || 'Email is required']"
+      :rules="[val => (val && val.length > 0) || 'Email is required']"
       type="email"
       />
 
@@ -16,7 +16,7 @@
         label="Password"
         v-model="form.password"
         lazy-rules=""
-        :rules="[val => (val && val,lengh > 0) || 'Password is required']"
+        :rules="[val => (val && val.length >= 6) || 'Password is required']"
         type="password"
         />
 
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import useNotify from 'src/composables/UseNotify'
 import useAuthUser from 'src/composables/UseAuthUser.js'
@@ -69,13 +69,19 @@ export default defineComponent({
   setup () {
     const router = useRouter()
 
-    const { login } = useAuthUser()
+    const { login, isLoggedIn } = useAuthUser()
 
     const { notifyError, notifySuccess } = useNotify()
 
     const form = ref({
       email: '',
       password: ''
+    })
+
+    onMounted(() => {
+      if (isLoggedIn) {
+        router.push({ name: 'me' })
+      }
     })
 
     const handleLogin = async () => {
