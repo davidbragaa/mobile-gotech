@@ -11,7 +11,7 @@
         <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-sm">
           <q-btn
               label="back to login"
-              color="darck"
+              color="secondary"
               class="full-width"
               rounded
               :to="{name: 'login'}"

@@ -10,6 +10,7 @@
         v-model="form.name"
         lazy-rules=""
         :rules="[val => (val.length > 0) || 'Name is required']"
+        color="secondary"
         />
 
         <q-input
@@ -18,6 +19,7 @@
         lazy-rules=""
         :rules="[val => (val && val.length > 0) || 'Email is required']"
         type="email"
+        color="secondary"
         />
 
         <q-input
@@ -26,12 +28,13 @@
           lazy-rules=""
           :rules="[val => (val && val.length >= 6) || 'Password is required and 6 characters']"
           type="password"
+          color="secondary"
           />
 
           <div class="full-width q-pt-md">
             <q-btn
             label="Register"
-            color="secundary"
+            color="secondary"
             class="full-width"
             outline
             rounded

@@ -139,11 +139,9 @@ const linksList = [
 ]
 
 import useAuthUser from 'src/composables/UseAuthUser'
-import { defineComponent, ref } from 'vue'
-import { useRouter } from 'vue-router'
+// import { defineComponent, ref } from 'vue'
+// import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
-
-
 
 export default defineComponent({
   name: 'MainLayout',
@@ -159,23 +157,21 @@ export default defineComponent({
 
     const router = useRouter()
 
-    const  { logout } = useAuthUser()
+    const { logout } = useAuthUser()
 
     const handleLogout = async () => {
       $q.dialog({
         title: 'Logout',
         message: 'Voce realmente quer sai?',
         cancel: true,
-        persistent: true,
+        persistent: true
       }).onOk(async () => {
         await logout()
-        router.replace ({ name: 'login'})
+        router.replace({ name: 'login' })
       })
 
       await logout()
     }
-
-
 
     return {
       essentialLinks: linksList,

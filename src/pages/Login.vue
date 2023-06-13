@@ -10,6 +10,7 @@
       lazy-rules=""
       :rules="[val => (val && val.length > 0) || 'Email is required']"
       type="email"
+      color="secondary"
       />
 
       <q-input
@@ -18,12 +19,13 @@
         lazy-rules=""
         :rules="[val => (val && val.length >= 6) || 'Password is required']"
         type="password"
+        color="secondary"
         />
 
         <div class="full-width q-pt-md">
           <q-btn
           label="Login"
-          color="secundary"
+          color="secondary"
           class="full-width"
           outline
           rounded
@@ -35,8 +37,9 @@
         <div class="full-width q-gutter-y-sm">
           <q-btn
           label="Register"
-          color="primary"
+          color="secondary"
           class="full-width"
+          rounded
           flat
           to="/register"
           size="sm"
@@ -44,8 +47,9 @@
 
           <q-btn
           label="Forgot Password ?"
-          color="primary"
+          color="secondary"
           class="full-width"
+          rounded
           flat
           :to="{name: 'forgot-password'}"
           size="sm"
