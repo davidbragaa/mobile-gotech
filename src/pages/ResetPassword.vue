@@ -9,14 +9,14 @@
             label="Send New Password"
             v-model="email"
             lazy-rules=""
-            :rules="[val => (val && val,lengh >= 6) || 'Password is required send a 6 characteres !']"
+            :rules="[val => (val && val,length >= 6) || 'Password is required send a 6 characters !']"
             type="email"
           />
 
           <div class="full-width q-pt-md">
             <q-btn
             label="Send Rest Email"
-            color="secundary"
+            color="secondary"
             class="full-width"
             outline
             rounded
@@ -54,7 +54,7 @@ export default defineComponent({
       try {
         await resetPassword(token, password.value)
         notifySuccess('New password sent')
-        router.push({ name: 'loign' })
+        router.push({ name: 'login' })
       } catch (error) {
         notifyError(error.message)
       }

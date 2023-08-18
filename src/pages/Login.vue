@@ -92,7 +92,7 @@ export default defineComponent({
       try {
         await login(form.value)
         notifySuccess('Login successfuly')
-        router.push({ name: 'Me' })
+        router.push({ name: 'me' })
       } catch (error) {
         notifyError(error.message)
         // alert(error.message)

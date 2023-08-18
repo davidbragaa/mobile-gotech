@@ -169,8 +169,6 @@ export default defineComponent({
         await logout()
         router.replace({ name: 'login' })
       })
-
-      await logout()
     }
 
     return {

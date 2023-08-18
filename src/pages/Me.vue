@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <div v-if="user">
-      <p> Ola {{ user.user_metadata.name }}</p>
+      <p> Seja muito bem vindo a Etec. {{ user.user_metadata.name }}</p>
     </div>
 
   </q-page>
@@ -9,7 +9,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import useAuthUser from 'src/composabbles/UseAuthUser'
+import useAuthUser from 'src/composables/UseAuthUser'
 
 export default defineComponent({
   name: 'PageME',

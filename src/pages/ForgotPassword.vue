@@ -9,14 +9,14 @@
             label="Email"
             v-model="email"
             lazy-rules=""
-            :rules="[val => (val && val,lengh > 0) || 'Email is required !']"
+            :rules="[val => (val && val,length > 0) || 'Email is required !']"
             type="email"
           />
 
           <div class="full-width q-pt-md">
             <q-btn
             label="Send Rest Email"
-            color="secundary"
+            color="secondary"
             class="full-width"
             outline
             rounded
@@ -26,7 +26,7 @@
 
             <q-btn
               label="back"
-              color="darck"
+              color="dark"
               class="full-width"
               rounded
               flat

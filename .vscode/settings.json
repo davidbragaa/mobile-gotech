@@ -11,5 +11,14 @@
     "javascriptreact",
     "typescript",
     "vue"
+  ],
+  "cSpell.words": [
+    "composables",
+    "fontawesome",
+    "gotech",
+    "Iiwicm",
+    "redondo",
+    "roboto",
+    "Supabase"
   ]
 }
