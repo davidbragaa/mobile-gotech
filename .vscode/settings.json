@@ -13,12 +13,18 @@
     "vue"
   ],
   "cSpell.words": [
+    "aluno",
     "composables",
     "fontawesome",
+    "frequencia",
+    "Frequencia",
     "gotech",
     "Iiwicm",
     "redondo",
     "roboto",
     "Supabase"
-  ]
+  ],
+  "[vue]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  }
 }

@@ -44,7 +44,7 @@
 
             <q-btn
               label="back"
-              color="darck"
+              color="dark"
               class="full-width"
               rounded
               flat
