@@ -48,7 +48,8 @@ module.exports = configure(function (/* ctx */) {
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font', // optional, you are not bound to it
-      'material-icons' // optional, you are not bound to it
+      'material-icons', // optional, you are not bound to it
+      'mdi-v5'
     ],
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#build
@@ -62,7 +63,8 @@ module.exports = configure(function (/* ctx */) {
       env: {
         SUPABASE_URL: 'https://anezlkiwrubpnwxrwmgl.supabase.co',
         SUPABASE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFuZXpsa2l3cnVicG53eHJ3bWdsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODYxOTIwNDEsImV4cCI6MjAwMTc2ODA0MX0.QDGG4dVUDhQIzGKK4qEPb_MvhZlUOzj3oQgQSUF6CA0'
-      }
+      // eslint-disable-next-line comma-dangle
+      },
       // vueRouterBase,
       // vueDevtools,
       // vueOptionsAPI: false,
@@ -88,7 +90,7 @@ module.exports = configure(function (/* ctx */) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
-      // https: true
+      https: true,
       open: true // opens browser window automatically
     },
 

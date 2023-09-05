@@ -67,74 +67,73 @@ import { useRouter } from 'vue-router'
 const linksList = [
   {
     title: 'Home',
-    caption: 'Página Inicial',
-    icon: 'home',
-    route: 'HomePage'
+    icon: 'mdi-home',
+    routeName: 'me'
   },
   {
-    title: 'Calendário',
-    caption: 'forum.quasar.dev',
-    icon: 'calendar_month',
-    link: 'https://forum.quasar.dev'
+    title: 'Aluno',
+    caption: '',
+    icon: 'mdi-school',
+    routeName: 'aluno'
+  },
+  {
+    title: 'Disciplina',
+    caption: '',
+    icon: 'mdi-book-open-variant',
+    routeName: 'disciplina'
   },
   {
     title: 'QR Code',
     caption: 'Gerar QR Code',
-    icon: 'qr_code',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Perfil',
-    caption: 'Acessar dados do Perfil',
-    icon: 'person',
-    link: 'https://facebook.quasar.dev'
+    icon: 'mdi-qrcode-scan',
+    routeName: 'qrcode'
   },
   {
     title: 'Frequencia',
-    caption: 'Consultar frequencia escolar',
-    icon: 'rule',
-    link: 'https://awesome.quasar.dev'
+    caption: '',
+    icon: 'mdi-clipboard',
+    routeName: 'frequencia'
   },
   {
     title: 'Contato',
     caption: 'Entre em contato conosco',
     icon: 'call',
-    link: 'http://www.etecbauru.com.br/contatos.php'
+    routeName: 'contato'
   },
   {
     title: 'Presença',
     caption: 'Registrar presença do dia',
     icon: 'add_task',
-    link: 'https://awesome.quasar.dev'
+    routeName: 'presenca'
   },
   {
     title: 'Arquivos',
     caption: 'Arquivos disponibilizados',
     icon: 'backup',
-    link: 'https://awesome.quasar.dev'
+    routeName: 'https://awesome.quasar.dev'
   },
   {
     title: 'Laboratório',
     caption: 'Reserva de Laboratório',
     icon: 'biotech',
-    link: 'https://awesome.quasar.dev'
+    routeName: 'https://awesome.quasar.dev'
   },
   {
     title: 'Certificados',
     caption: 'Meus certificados',
     icon: 'school',
-    link: 'https://awesome.quasar.dev'
+    routeName: 'https://awesome.quasar.dev'
   },
   {
     title: 'Configurações',
     icon: 'settings',
-    link: 'https://github.com/quasarframework'
+    routeName: 'https://github.com/quasarframework'
   },
   {
     title: 'Sair',
     caption: 'Sair do usuário',
     icon: 'logout',
-    link: 'https://chat.quasar.dev'
+    routeName: 'https://chat.quasar.dev'
   }
 ]
 

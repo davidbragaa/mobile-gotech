@@ -1,0 +1,31 @@
+<template>
+  <q-page class="flex flex-center">
+    <div class="col-12 text-center">
+      <qrcode-vue :value="QRValue" size="300" level="H"/>
+        <form>
+          <q-space />
+          <input
+            type="text"
+            v-model="QRValue"
+          >
+        </form>
+    </div>
+  </q-page>
+</template>
+
+<script>
+
+import QrcodeVue from 'qrcode.vue'
+
+export default {
+  data () {
+    return {
+      QRValue: null
+
+    }
+  },
+  components: {
+    QrcodeVue
+  }
+}
+</script>
