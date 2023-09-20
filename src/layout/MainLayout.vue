@@ -77,6 +77,7 @@ const linksList = [
     routeName: 'aluno'
   },
   {
+<<<<<<< HEAD
     title: 'Disciplina',
     caption: '',
     icon: 'mdi-book-open-variant',
@@ -85,10 +86,21 @@ const linksList = [
   {
     title: 'QR Code',
     caption: '',
+=======
+    title: 'Frequencia',
+    caption: '',
+    icon: 'mdi-clipboard',
+    routeName: 'frequencia'
+  },
+  {
+    title: 'QR Code',
+    caption: 'Gerar QR Code',
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
     icon: 'mdi-qrcode-scan',
     routeName: 'qrcode'
   },
   {
+<<<<<<< HEAD
     title: 'Frequencia',
     caption: '',
     icon: 'mdi-clipboard',
@@ -99,6 +111,12 @@ const linksList = [
     caption: '',
     icon: 'biotech',
     routeName: 'laboratorio'
+=======
+    title: 'Perfil',
+    caption: 'Acessar dados do Perfil',
+    icon: 'person',
+    routeName: 'perfil'
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
   },
   {
     title: 'Contato',
@@ -108,15 +126,30 @@ const linksList = [
   },
   {
     title: 'Presença',
+<<<<<<< HEAD
     caption: '',
     icon: 'mdi-account-check',
     routeName: 'camera'
+=======
+    caption: 'Registrar presença do dia',
+    icon: 'add_task',
+    routeName: 'presenca'
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
   },
   {
     title: 'Arquivos',
     caption: 'Arquivos disponibilizados',
     icon: 'backup',
     routeName: 'https://awesome.quasar.dev'
+<<<<<<< HEAD
+=======
+  },
+  {
+    title: 'Laboratório',
+    caption: 'Reserva de Laboratório',
+    icon: 'biotech',
+    routeName: 'https://awesome.quasar.dev'
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
   },
   {
     title: 'Certificados',
@@ -128,6 +161,15 @@ const linksList = [
     title: 'Configurações',
     icon: 'settings',
     routeName: 'https://github.com/quasarframework'
+<<<<<<< HEAD
+=======
+  },
+  {
+    title: 'Sair',
+    caption: 'Sair do usuário',
+    icon: 'logout',
+    routeName: 'https://chat.quasar.dev'
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
   }
 ]
 

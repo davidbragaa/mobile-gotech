@@ -15,19 +15,31 @@
 
         <q-input
         label="Email"
+<<<<<<< HEAD
         v-model="form.email"
+=======
+        v-model="form.name"
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
         :rules="[val => (val && val.length > 0) || 'Email is required']"
         />
 
         <q-input
         label="R.A"
+<<<<<<< HEAD
         v-model="form.ra"
+=======
+        v-model="form.name"
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
         :rules="[val => !!val|| 'RA is required']"
         type="number"
         />
 
         <q-btn
+<<<<<<< HEAD
           :label="isUpdate ? 'Atualizar' : 'Salvar'"
+=======
+          :label="Save ? 'Update' : 'Salve'"
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
           color="primary"
           class="full-width"
           rounded
@@ -58,7 +70,11 @@ import useNotify from 'src/composables/UseNotify'
 export default defineComponent({
   name: 'PageFormAluno',
   setup () {
+<<<<<<< HEAD
     const table = 'Aluno'
+=======
+    const table = 'aluno'
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
     const router = useRouter()
     const route = useRoute()
     const { post, getById, update } = useApi()
@@ -89,7 +105,11 @@ export default defineComponent({
           notifyError('Salvo com Sucesso')
         }
 
+<<<<<<< HEAD
         router.push({ name: 'aluno' })
+=======
+        router.push({ name: aluno })
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
       } catch (error) {
         notifyError(error.message)
       }
