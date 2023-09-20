@@ -54,7 +54,11 @@
             />
 
             <q-btn
+<<<<<<< HEAD
               label="Voltar"
+=======
+              label="back"
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
               color="dark"
               class="full-width"
               rounded

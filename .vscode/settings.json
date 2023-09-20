@@ -14,7 +14,10 @@
   ],
   "cSpell.words": [
     "aluno",
+<<<<<<< HEAD
     "colummn",
+=======
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
     "composables",
     "davidsantos",
     "etec",
@@ -29,9 +32,13 @@
     "qrcode",
     "redondo",
     "roboto",
+<<<<<<< HEAD
     "supabase",
     "Supabase",
     "videoplay"
+=======
+    "Supabase"
+>>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
   ],
   "[vue]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
