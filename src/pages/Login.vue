@@ -14,7 +14,7 @@
       />
 
       <q-input
-        label="Password"
+        label="Senha"
         v-model="form.password"
         lazy-rules=""
         :rules="[val => (val && val.length >= 6) || 'Password is required']"
@@ -36,7 +36,7 @@
 
         <div class="full-width q-gutter-y-sm">
           <q-btn
-          label="Register"
+          label="Cadastrar"
           color="secondary"
           class="full-width"
           rounded
@@ -46,7 +46,7 @@
           />
 
           <q-btn
-          label="Forgot Password ?"
+          label="Esqueci minha Senha"
           color="secondary"
           class="full-width"
           rounded

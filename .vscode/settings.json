@@ -14,15 +14,24 @@
   ],
   "cSpell.words": [
     "aluno",
+    "colummn",
     "composables",
+    "davidsantos",
+    "etec",
     "fontawesome",
     "frequencia",
     "Frequencia",
     "gotech",
     "Iiwicm",
+    "laboratorio",
+    "Laboratorios",
+    "Profesor",
+    "qrcode",
     "redondo",
     "roboto",
-    "Supabase"
+    "supabase",
+    "Supabase",
+    "videoplay"
   ],
   "[vue]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"

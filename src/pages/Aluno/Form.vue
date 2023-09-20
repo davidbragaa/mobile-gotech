@@ -15,19 +15,19 @@
 
         <q-input
         label="Email"
-        v-model="form.name"
+        v-model="form.email"
         :rules="[val => (val && val.length > 0) || 'Email is required']"
         />
 
         <q-input
         label="R.A"
-        v-model="form.name"
+        v-model="form.ra"
         :rules="[val => !!val|| 'RA is required']"
         type="number"
         />
 
         <q-btn
-          :label="Save ? 'Update' : 'Salve'"
+          :label="isUpdate ? 'Atualizar' : 'Salvar'"
           color="primary"
           class="full-width"
           rounded
@@ -58,7 +58,7 @@ import useNotify from 'src/composables/UseNotify'
 export default defineComponent({
   name: 'PageFormAluno',
   setup () {
-    const table = 'aluno'
+    const table = 'Aluno'
     const router = useRouter()
     const route = useRoute()
     const { post, getById, update } = useApi()
@@ -89,7 +89,7 @@ export default defineComponent({
           notifyError('Salvo com Sucesso')
         }
 
-        router.push({ name: aluno })
+        router.push({ name: 'aluno' })
       } catch (error) {
         notifyError(error.message)
       }

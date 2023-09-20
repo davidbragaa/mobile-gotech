@@ -84,7 +84,7 @@ const linksList = [
   },
   {
     title: 'QR Code',
-    caption: 'Gerar QR Code',
+    caption: '',
     icon: 'mdi-qrcode-scan',
     routeName: 'qrcode'
   },
@@ -95,6 +95,12 @@ const linksList = [
     routeName: 'frequencia'
   },
   {
+    title: 'Laboratório',
+    caption: '',
+    icon: 'biotech',
+    routeName: 'laboratorio'
+  },
+  {
     title: 'Contato',
     caption: 'Entre em contato conosco',
     icon: 'call',
@@ -102,20 +108,14 @@ const linksList = [
   },
   {
     title: 'Presença',
-    caption: 'Registrar presença do dia',
-    icon: 'add_task',
-    routeName: 'presenca'
+    caption: '',
+    icon: 'mdi-account-check',
+    routeName: 'camera'
   },
   {
     title: 'Arquivos',
     caption: 'Arquivos disponibilizados',
     icon: 'backup',
-    routeName: 'https://awesome.quasar.dev'
-  },
-  {
-    title: 'Laboratório',
-    caption: 'Reserva de Laboratório',
-    icon: 'biotech',
     routeName: 'https://awesome.quasar.dev'
   },
   {
@@ -128,12 +128,6 @@ const linksList = [
     title: 'Configurações',
     icon: 'settings',
     routeName: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Sair',
-    caption: 'Sair do usuário',
-    icon: 'logout',
-    routeName: 'https://chat.quasar.dev'
   }
 ]
 

@@ -2,11 +2,11 @@
   <q-page padding>
     <q-form @submit.prevent="handleRegister">
       <div class="row justify-center">
-        <p class="col-12 text-h4 text-center">Register</p>
+        <p class="col-12 text-h4 text-center">Cadastro</p>
         <div class="col-md-4 col-sm-6 col-xs-10">
 
           <q-input
-        label="Name"
+        label="Nome"
         v-model="form.name"
         lazy-rules=""
         :rules="[val => (val.length > 0) || 'Name is required']"
@@ -23,7 +23,7 @@
         />
 
         <q-input
-          label="Password"
+          label="Senha"
           v-model="form.password"
           lazy-rules=""
           :rules="[val => (val && val.length >= 6) || 'Password is required and 6 characters']"
@@ -32,8 +32,19 @@
           />
 
           <div class="full-width q-pt-md">
+              <q-select
+              label="Tipo"
+              v-model="form.tipo"
+              :options="options"
+              lazy-rules=""
+              :rules="[val => (val.length > 0) || 'Type of user required']"
+
+              />
+          </div>
+
+          <div class="full-width q-pt-md">
             <q-btn
-            label="Register"
+            label="Cadastrar"
             color="secondary"
             class="full-width"
             outline
@@ -43,7 +54,7 @@
             />
 
             <q-btn
-              label="back"
+              label="Voltar"
               color="dark"
               class="full-width"
               rounded
@@ -76,8 +87,9 @@ export default defineComponent({
 
     const form = ref({
       name: '',
-      email: '',
-      password: ''
+      email: '@etec.sp.gov.br',
+      password: '',
+      tipo: ''
     })
     const handleRegister = async () => {
       try {
@@ -93,7 +105,11 @@ export default defineComponent({
     }
     return {
       form,
-      handleRegister
+      handleRegister,
+      model: ref(null),
+      options: [
+        'Aluno', 'Profesor', 'Administrativo'
+      ]
     }
   }
 })

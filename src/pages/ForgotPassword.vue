@@ -2,7 +2,7 @@
   <q-page padding>
     <q-form @submit.prevent="handleForgotPassword">
       <div class="row justify-center">
-        <p class="col-12 text-h4 text-center">Reset Password</p>
+        <p class="col-12 text-h4 text-center">Redefinir Senha</p>
         <div class="col-md-4 col-sm-6 col-xs-10">
 
           <q-input
@@ -15,7 +15,7 @@
 
           <div class="full-width q-pt-md">
             <q-btn
-            label="Send Rest Email"
+            label="enviar e-mail de redefinição"
             color="secondary"
             class="full-width"
             outline
@@ -25,7 +25,7 @@
             />
 
             <q-btn
-              label="back"
+              label="Voltar"
               color="dark"
               class="full-width"
               rounded
@@ -50,7 +50,7 @@ export default defineComponent({
 
     const { notifyError, notifySuccess } = useNotify()
 
-    const email = ref('')
+    const email = ref('@etec.sp.gov.br')
 
     const handleForgotPassword = async () => {
       try {

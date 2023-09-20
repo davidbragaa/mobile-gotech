@@ -23,10 +23,12 @@ const routes = [
       { path: 'aluno', name: 'aluno', component: () => import('pages/Aluno/List.vue') },
       { path: 'form-aluno/:id?', name: 'form-aluno', component: () => import('pages/Aluno/Form.vue') },
       { path: 'frequencia', name: 'frequencia', component: () => import('pages/Frequency/List.vue') },
-      { path: 'qrcode', name: 'qrcode', component: () => import('pages/Frequency/QRcode.vue') },
       { path: 'form-frequencia/:id?', name: 'form-frequencia', component: () => import('pages/Frequency/Form.vue') },
+      { path: 'qrcode', name: 'qrcode', component: () => import('pages/Frequency/QRcode.vue') },
       { path: 'disciplina', name: 'disciplina', component: () => import('pages/Disciplina/List.vue') },
-      { path: 'form-disciplina/:id?', name: 'form-disciplina', component: () => import('pages/Disciplina/Form.vue') }
+      { path: 'form-disciplina/:id?', name: 'form-disciplina', component: () => import('pages/Disciplina/Form.vue') },
+      { path: 'laboratorio', name: 'laboratorio', component: () => import('pages/Laboratorio/List.vue') },
+      { path: 'camera', name: 'camera', component: () => import('pages/Camera/Camera.vue') }
       // { path: '', component: () => import('pages/Index.vue') }
 
     ],

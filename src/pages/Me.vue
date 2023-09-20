@@ -1,13 +1,8 @@
 <template>
   <q-page class="flex flex-center">
     <div v-if="user">
-        <div class="q-gutter-md row items-start">
-          <q-img
-          sv-for="mode in fitModes"
-          src="../assets/Etec.jpeg"
-          style=" max-width: 300px;height: 150px;"
-          :fit="mode"
-           />
+        <div class="col-06 q-gutter-md row items-start">
+
         <strong> <p> Bem vindo Aluno. {{ user.user_metadata.name }}</p></strong>
         </div>
     </div>
