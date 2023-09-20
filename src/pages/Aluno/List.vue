@@ -92,11 +92,7 @@ export default defineComponent({
       try {
         $q.dialog({
           title: 'Confirm',
-<<<<<<< HEAD
           message: `Você está certo de deletar ${aluno.value.nome} ?`,
-=======
-          message: `Você etsá certo de deletar ${aluno.value.nome} ?`,
->>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
           cancel: true,
           persistent: true
         }).onOk(async () => {

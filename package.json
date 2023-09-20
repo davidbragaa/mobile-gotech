@@ -24,10 +24,7 @@
     "axios": "^1.2.1",
     "bootstrap": "^5.3.0",
     "bootstrap-vue": "^2.23.1",
-<<<<<<< HEAD
     "lodash": "^4.17.21",
-=======
->>>>>>> e9895b63645b379cf505b5c53ab2dee70461886e
     "qrcode.vue": "^3.4.1",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
