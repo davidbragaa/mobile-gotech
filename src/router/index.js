@@ -35,7 +35,7 @@ export default route(function (/* { store, ssrContext } */) {
       to.name !== 'reset-password'
     ) {
       const accessToken = to.hash.split('&')[0]
-      const token = accessToken.replace('#access_token', '')
+      const token = accessToken.replace('#access_token=', '')
       return { name: 'reset-password', query: { token } }
     }
 

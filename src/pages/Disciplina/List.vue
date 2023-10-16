@@ -13,27 +13,24 @@
             Disciplina
           </span>
             <q-space />
-            <q-select
-            standout
-            v-model = "modelo"
-            dense
-            :options =  "opções"
-            />
-
+            <option disabled value="true" color="primary">Escolha o Curso</option>
+              <q-select
+              standout
+              label= "Curso"
+              v-model="selectedCurso"
+              dense
+              :options= "opções"
+              />
+              <!-- Adicione uma coluna para exibir o QR code -->
         </template>
           <template v-slot:body-cell-actions="props">
             <q-td :props="props" class="q-gutter-x-sm">
-              <q-btn
-                color="primary"
-                label=""
+                <qrcode-vue
+                :value="getQrCodeValue(props.row)"
                 dense
-                @click="useCamera"
-                icon="mdi-camera"
+                :size="90"
                 />
             </q-td>
-            <div  class = " q-gutter-sm " >
-
-            </div >
           </template>
       </q-table>
     </div>
@@ -45,55 +42,74 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import useApi from 'src/composables/UseApi'
 import useNotify from 'src/composables/UseNotify'
-// import { useRouter } from 'vue-router'
-// import { useQuasar } from 'quasar'
 import { columnsDisciplinas } from './table'
+import QrcodeVue from 'qrcode.vue'
 
 export default defineComponent({
 
   name: 'PageDisciplinaList',
+  components: {
+    QrcodeVue
+  },
   setup () {
     const disciplina = ref([])
     const loading = ref(true)
-    // const router = useRouter()
     const table = 'Disciplina'
-    // const $q = useQuasar()
-
     const { list } = useApi()
     const { notifyError } = useNotify()
+    const selectedCurso = ref(null)
 
     const handleListDisciplina = async () => {
       try {
         loading.value = true
-        disciplina.value = await list(table)
+        if (selectedCurso.value) {
+          // Se um curso foi selecionado, filtre as disciplinas com base no curso
+          disciplina.value = await list(table, { curso: selectedCurso.value })
+        } else {
+          // Caso contrário, liste todas as disciplinas
+          disciplina.value = await list(table)
+        }
         loading.value = false
       } catch (error) {
         notifyError(error.message)
       }
     }
-
     onMounted(() => {
-      handleListDisciplina()
+      handleListDisciplina(selectedCurso)
     })
+
+    // Função para gerar o valor do QR code com base no ID da disciplina
+    const getQrCodeValue = (disciplinaId) => {
+      const qrData = {
+        disciplinaId: disciplina.value.id,
+        checkinCode: generateCheckinCode() // Gere um código de check-in único
+      }
+      return JSON.stringify(qrData)
+    }
+
+    const generateCheckinCode = () => {
+      // Aqui você pode gerar um código de check-in único, por exemplo, usando um UUID ou outra lógica personalizada
+      return 'código-de-checkin-único'
+    }
+
+    const opções = [
+      'Administração',
+      'Desenvolvimento de Sistemas',
+      'Informática',
+      'Logística',
+      'Recursos Humanos',
+      'Segurança do Trabalho'
+    ]
 
     return {
       columnsDisciplinas,
+      selectedCurso,
       disciplina,
       loading,
-      // handleEdit,
-      // handleRemoveDisciplina,
-      modelo: ref(null),
-      opções: [
-        'Administração',
-        'Desenvolvimento de Sistemas',
-        'Informática',
-        'Logística',
-        'Recursos Humanos',
-        'Segurança do Trabalho'
-      ]
+      opções,
+      getQrCodeValue // Tornar a função disponível no modelo do componente
 
     }
   }
-
 })
 </script>

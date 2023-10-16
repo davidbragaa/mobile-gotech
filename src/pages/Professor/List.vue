@@ -2,15 +2,15 @@
   <q-page padding>
     <div class="rows">
       <q-table
-        :rows="aluno"
-        :columns="columnsAlunos"
+        :rows="professor"
+        :columns="columnsProfessor"
         row-key="id"
         class="col-12"
         :loading="loading"
       >
         <template v-slot:top>
           <span class="text-h6">
-            Alunos
+            Professor
           </span>
             <q-space />
             <q-btn
@@ -19,17 +19,32 @@
               color="secondary"
               icon="mdi-plus"
               dense
-              :to="{ name: 'form-aluno' }"
+              :to="{ name: 'form-professor' }"
               />
         </template>
         <template v-slot:body-cell-actions="props">
-          <q-td :props="props" class="q-gutter-x-sm">
-            <q-btn icon="mdi-pencil-outline" color="info" dense size="sm" @click="handleEdit(props.row)">
+          <q-td
+            :props="props"
+            class="q-gutter-x-sm"
+          >
+
+            <q-btn
+              icon="mdi-pencil-outline"
+              color="info"
+              dense size="sm"
+              @click="handleEdit(props.row)"
+             >
               <q-tooltip>
                 Edit
               </q-tooltip>
             </q-btn>
-            <q-btn icon="mdi-delete-outline" color="negative" dense size="sm" @click="handleRemoveAluno(props.row)">
+            <q-btn
+              icon="mdi-delete-outline"
+              color="negative"
+              dense size="sm"
+              @click="handleRemoveProfessor(props.row)"
+              >
+
               <q-tooltip>
                 Remove
               </q-tooltip>
@@ -47,8 +62,9 @@
           fab
           icon="mdi-plus"
           color="secondary"
-          :to="{ name: 'form-aluno' }"
+          :to="{ name: 'form-professor' }"
         />
+
       </q-page-sticky>
   </q-page>
 </template>
@@ -60,46 +76,46 @@ import useApi from 'src/composables/UseApi'
 import useNotify from 'src/composables/UseNotify'
 import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
-import { columnsAlunos } from './table'
+import { columnsProfessor } from './table'
 
 export default defineComponent({
 
-  name: 'PageAlunoList',
+  name: 'PageProfessorList',
   setup () {
-    const aluno = ref([])
+    const professor = ref([])
     const loading = ref(true)
     const router = useRouter()
-    const table = 'Aluno'
+    const table = 'Professor'
     const $q = useQuasar()
 
     const { list, remove } = useApi()
     const { notifyError, notifySuccess } = useNotify()
 
-    const handleListAluno = async () => {
+    const handleListProfessor = async () => {
       try {
         loading.value = true
-        aluno.value = await list(table)
+        professor.value = await list(table)
         loading.value = false
       } catch (error) {
         notifyError(error.message)
       }
     }
 
-    const handleEdit = (aluno) => {
-      router.push({ name: 'form-aluno', params: { id: aluno.id } })
+    const handleEdit = (professor) => {
+      router.push({ name: 'form-professor', params: { id: professor.id } })
     }
 
-    const handleRemoveAluno = async (aluno) => {
+    const handleRemoveProfessor = async (professor) => {
       try {
         $q.dialog({
-          title: 'Confirm',
-          message: `Você está certo de deletar ${aluno.value.nome} ?`,
+          title: 'Confirma',
+          message: `Você está certo de deletar ${professor.value.nome} ?`,
           cancel: true,
           persistent: true
         }).onOk(async () => {
-          await remove(table, aluno.value.id)
+          await remove(table, professor.value.id)
           notifySuccess('Delete com sucesso')
-          handleListAluno()
+          handleListProfessor()
         })
       } catch (error) {
         notifyError(error.message)
@@ -107,15 +123,15 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      handleListAluno()
+      handleListProfessor()
     })
 
     return {
-      columnsAlunos,
-      aluno,
+      columnsProfessor,
+      professor,
       loading,
       handleEdit,
-      handleRemoveAluno
+      handleRemoveProfessor
 
     }
   }

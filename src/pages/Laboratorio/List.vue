@@ -13,26 +13,14 @@
             Laboratório
           </span>
             <q-space />
-            <!-- <q-btn
-              v-if="$q.platform.is.desktop"
-              label="Adicionar"
-              color="secondary"
-              icon="mdi-plus"
-              dense
-              :to="{ name: 'form-laboratorio' }"
-              /> -->
 
         </template>
         <template v-slot:body-cell-actions="props">
           <q-td :props="props" class="q-gutter-x-sm">
             <div class="q-pa-md">
               <div class="q-mb-sm">
-                <q-badge
-                  color="primary"
-                  dense
-                >
-                  {{ date }}
-                </q-badge>
+                  {{ date.now }}
+
               </div>
                 <q-btn icon="event" round color="secondary">
                   <q-popup-proxy @before-show="updateProxy" cover transition-show="scale" transition-hide="scale">
@@ -56,18 +44,7 @@
                   </q-popup-proxy>
                 </q-btn>
           </div>
-
-            <!-- <q-btn icon="mdi-pencil-outline" color="info" dense size="sm" @click="handleEdit(props.row)">
-              <q-tooltip>
-                Edit
-              </q-tooltip>
-            </q-btn>
-            <q-btn icon="mdi-delete-outline" color="negative" dense size="sm" @click="handleRemoveAluno(props.row)">
-              <q-tooltip>
-                Remove
-              </q-tooltip>
-            </q-btn> -->
-          </q-td>
+        </q-td>
 
         </template>
       </q-table>
@@ -76,12 +53,6 @@
       position="bottom-right"
       :offset="[18, 18]"
       >
-        <!-- <q-btn
-        v-if="$q.platform.is.mobile"
-        fab
-        icon="mdi-plus"
-        color="secondary"
-        :to="{ name: 'form-laboratorio' }" /> -->
       </q-page-sticky>
   </q-page>
 </template>
@@ -109,7 +80,7 @@ export default defineComponent({
     const { list, remove } = useApi()
     const { notifyError, notifySuccess } = useNotify()
 
-    const date = ref([])
+    const date = ref([now])
     const proxyDate = ref([now])
 
     const handleListLaboratorio = async () => {
@@ -147,6 +118,14 @@ export default defineComponent({
       handleListLaboratorio()
     })
 
+    // updateProxy (){
+    //     proxyDate.value = date.value
+    // }
+
+    // save () {
+    //   date.value = proxyDate.value
+    // }
+
     return {
       columnsLaboratorios,
       laboratorio,
@@ -154,15 +133,8 @@ export default defineComponent({
       handleEdit,
       handleRemoveLaboratorio,
       date,
-      proxyDate
-
-      //   updateProxy () {
-      //     proxyDate.value = date.value
-      // },
-
-      // save () {
-      //   date.value = proxyDate.value
-      // }
+      proxyDate,
+      selectedDate: null
 
     }
   }

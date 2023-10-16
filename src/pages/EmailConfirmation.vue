@@ -10,7 +10,7 @@
       <div class="row justify-center q-gutter-y-sm">
         <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-sm">
           <q-btn
-              label="back to login"
+              label="Voltar para o Login"
               color="secondary"
               class="full-width"
               rounded

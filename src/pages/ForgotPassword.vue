@@ -9,13 +9,13 @@
             label="Email"
             v-model="email"
             lazy-rules=""
-            :rules="[val => (val && val,length > 0) || 'Email is required !']"
+            :rules="[val => (val && val.length > 0) || 'Email is required !']"
             type="email"
           />
 
           <div class="full-width q-pt-md">
             <q-btn
-            label="enviar e-mail de redefinição"
+            label="enviar e-mail"
             color="secondary"
             class="full-width"
             outline
@@ -42,15 +42,15 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import useNotify from 'src/composables/UseNotify'
-import useAuthUse from 'src/composables/UseAuthUser'
+import useAuthUser from 'src/composables/UseAuthUser'
 
 export default defineComponent({
   setup () {
-    const { sendPasswordResetEmail } = useAuthUse()
+    const { sendPasswordResetEmail } = useAuthUser()
 
     const { notifyError, notifySuccess } = useNotify()
 
-    const email = ref('@etec.sp.gov.br')
+    const email = ref('')
 
     const handleForgotPassword = async () => {
       try {

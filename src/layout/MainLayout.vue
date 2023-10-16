@@ -70,6 +70,7 @@ const linksList = [
     icon: 'mdi-home',
     routeName: 'me'
   },
+
   {
     title: 'Aluno',
     caption: '',
@@ -77,35 +78,40 @@ const linksList = [
     routeName: 'aluno'
   },
   {
+    title: 'Professor',
+    caption: '',
+    icon: 'mdi-account-tie',
+    routeName: 'professor'
+  },
+
+  {
     title: 'Disciplina',
     caption: '',
     icon: 'mdi-book-open-variant',
     routeName: 'disciplina'
   },
+
   {
-    title: 'QR Code',
+    title: 'QrCode',
     caption: '',
     icon: 'mdi-qrcode-scan',
     routeName: 'qrcode'
   },
+
   {
     title: 'Frequencia',
     caption: '',
     icon: 'mdi-clipboard',
     routeName: 'frequencia'
   },
+
   {
     title: 'Laboratório',
     caption: '',
     icon: 'biotech',
     routeName: 'laboratorio'
   },
-  {
-    title: 'Contato',
-    caption: 'Entre em contato conosco',
-    icon: 'call',
-    routeName: 'contato'
-  },
+
   {
     title: 'Presença',
     caption: '',
@@ -116,18 +122,18 @@ const linksList = [
     title: 'Arquivos',
     caption: 'Arquivos disponibilizados',
     icon: 'backup',
-    routeName: 'https://awesome.quasar.dev'
+    routeName: ''
   },
   {
     title: 'Certificados',
     caption: 'Meus certificados',
     icon: 'school',
-    routeName: 'https://awesome.quasar.dev'
+    routeName: ''
   },
   {
     title: 'Configurações',
     icon: 'settings',
-    routeName: 'https://github.com/quasarframework'
+    routeName: ''
   }
 ]
 

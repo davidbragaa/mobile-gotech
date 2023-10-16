@@ -42,6 +42,11 @@ export default defineComponent({
     icon: {
       type: String,
       default: ''
+    },
+
+    components: {
+      type: String,
+      DatePicker: ''
     }
   }
 })

@@ -3,44 +3,44 @@
     <q-form @submit.prevent="handleRegister">
       <div class="row justify-center">
         <p class="col-12 text-h4 text-center">Cadastro</p>
-        <div class="col-md-4 col-sm-6 col-xs-10">
+          <div class="col-md-4 col-sm-6 col-xs-10">
 
-          <q-input
-        label="Nome"
-        v-model="form.name"
-        lazy-rules=""
-        :rules="[val => (val.length > 0) || 'Name is required']"
-        color="secondary"
-        />
+            <q-input
+            label="Nome"
+            v-model="form.name"
+            lazy-rules=""
+            :rules="[val => (val.length > 0) || 'Name is required']"
+            color="secondary"
+            />
 
-        <q-input
-        label="Email"
-        v-model="form.email"
-        lazy-rules=""
-        :rules="[val => (val && val.length > 0) || 'Email is required']"
-        type="email"
-        color="secondary"
-        />
+            <q-input
+            label="Email"
+            v-model="form.email"
+            lazy-rules=""
+            :rules="[val => (val && val.length > 0) || 'Email is required']"
+            type="email"
+            color="secondary"
+            />
 
-        <q-input
-          label="Senha"
-          v-model="form.password"
-          lazy-rules=""
-          :rules="[val => (val && val.length >= 6) || 'Password is required and 6 characters']"
-          type="password"
-          color="secondary"
-          />
-
-          <div class="full-width q-pt-md">
-              <q-select
-              label="Tipo"
-              v-model="form.tipo"
-              :options="options"
+            <q-input
+              label="Senha"
+              v-model="form.password"
               lazy-rules=""
-              :rules="[val => (val.length > 0) || 'Type of user required']"
-
+              :rules="[val => (val && val.length >= 6) || 'Password is required and 6 characters']"
+              type="password"
+              color="secondary"
               />
-          </div>
+
+              <div class="full-width q-pt-md">
+                  <q-select
+                  label="Tipo"
+                  v-model="form.tipo"
+                  :options="options"
+                  lazy-rules=""
+                  :rules="[val => !!val|| 'Type of user required']"
+
+                  />
+              </div>
 
           <div class="full-width q-pt-md">
             <q-btn
@@ -62,10 +62,9 @@
               :to="{name: 'login'}"
               />
           </div>
-
-    </div>
-  </div>
-  </q-form>
+        </div>
+      </div>
+    </q-form>
   </q-page>
 </template>
 
@@ -82,13 +81,12 @@ export default defineComponent({
     const router = useRouter()
 
     const { register } = useAuthUser()
-
     const { notifyError, notifySuccess } = useNotify()
 
     const form = ref({
-      name: '',
-      email: '@etec.sp.gov.br',
+      email: '',
       password: '',
+      name: '',
       tipo: ''
     })
     const handleRegister = async () => {
@@ -108,7 +106,9 @@ export default defineComponent({
       handleRegister,
       model: ref(null),
       options: [
-        'Aluno', 'Profesor', 'Administrativo'
+        'Aluno',
+        'Profesor',
+        'Administrativo'
       ]
     }
   }

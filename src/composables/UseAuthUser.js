@@ -30,7 +30,7 @@ export default function useAuthUser () {
   }
   const register = async ({ email, password, ...meta }) => {
     const { user, error } = await supabase.auth.signUp(
-      { email, password },
+      { email, password, name },
       {
         data: meta,
         redirectTo: `${window.location.origin}/me?fromEmail=registrationConfirmation`
@@ -46,8 +46,8 @@ export default function useAuthUser () {
     return user
   }
 
-  const sendPasswordRestEmail = async (email) => {
-    const { user, error } = await supabase.auth.api.apiResetPasswordForEmail(email)
+  const sendPasswordResetEmail = async (email) => {
+    const { user, error } = await supabase.auth.resetPasswordForEmail(email)
     if (error) throw error
     return user
   }
@@ -69,7 +69,7 @@ export default function useAuthUser () {
     logout,
     register,
     update,
-    sendPasswordRestEmail,
+    sendPasswordResetEmail,
     resetPassword
     // maybeHandleEmailConfirmation,
   }

@@ -51,7 +51,7 @@
           class="full-width"
           rounded
           flat
-          :to="{name: 'forgot-password'}"
+          :to="{ name: 'forgot-password' }"
           size="sm"
           />
         </div>

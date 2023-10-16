@@ -4,6 +4,7 @@
       <div style="font-size: 30vh">
         404
       </div>
+      <img src="src/assets/Etec.jpeg" alt="Logo Etec">
 
       <div class="text-h2" style="opacity:.4">
         Oops. Nothing here...
