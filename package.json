@@ -2,7 +2,7 @@
   "name": "mobile-gotech",
   "version": "0.0.1",
   "description": "A Quasar Project",
-  "productName": "Go Tech",
+  "productName": "GoTech",
   "author": "davidsantos <david.stl@hotmail.com>",
   "private": true,
   "scripts": {
@@ -12,12 +12,12 @@
     "build": "quasar build"
   },
   "dependencies": {
-    "@capacitor/android": "^5.4.1",
+    "@capacitor/android": "^5.5.0",
     "@capacitor/camera": "^5.0.7",
     "@capacitor/core": "^5.4.1",
     "@capacitor/filesystem": "^5.1.4",
     "@capacitor/geolocation": "^5.0.6",
-    "@capacitor/ios": "^5.4.1",
+    "@capacitor/ios": "^5.5.0",
     "@capacitor/preferences": "^5.0.6",
     "@ionic/pwa-elements": "^3.2.2",
     "@quasar/extras": "^1.0.0",
@@ -39,7 +39,6 @@
     "vue3-qrcode-reader": "^0.0.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "^5.4.1",
     "@quasar/app-vite": "^1.0.0",
     "@types/lodash": "^4.14.198",
     "autoprefixer": "^10.4.2",

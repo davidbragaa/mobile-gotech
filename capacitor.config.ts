@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.gotech.app',
-  appName: 'mobile-gotech',
+  appName: 'GoTech',
   webDir: 'www',
   server: {
     androidScheme: 'https'

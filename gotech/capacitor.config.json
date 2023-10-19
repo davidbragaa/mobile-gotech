@@ -1,0 +1,11 @@
+{
+  "appId": "com.gotech.app",
+  "appName": "gotech",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

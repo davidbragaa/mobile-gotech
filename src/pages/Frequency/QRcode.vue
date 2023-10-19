@@ -1,5 +1,5 @@
 <template>
-  <q-page padding>
+  <q-page class="flex flex-center">
     <div class="row justify-center q-gutter-y-sm">
       <q-input
         v-model="disciplinaId"

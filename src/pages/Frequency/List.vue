@@ -2,7 +2,7 @@
   <q-page padding>
     <div class="rows">
       <q-table
-        :rows="Aluno"
+        :rows="aluno"
         :columns="columnsAlunos"
         row-key="id"
         class="col-12"

@@ -25,7 +25,7 @@
         type="number"
         />
 
-        <q-select
+        <!-- <q-select
         v-model="form.aluno_id"
         :options="optionsAluno"
         label="Aluno"
@@ -34,7 +34,7 @@
         map-options
         emit-value
         :rules="[val => !!val || 'Aluno é requirido']"
-        />
+        /> -->
 
         <q-btn
           :label="isUpdate ? 'Update' : 'Salve'"
@@ -45,7 +45,7 @@
           />
 
           <q-btn
-          label="Cancel"
+          label="Voltar"
           color="primary"
           class="full-width"
           rounded

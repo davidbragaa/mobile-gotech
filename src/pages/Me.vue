@@ -3,7 +3,7 @@
     <div v-if="user">
         <div class="col-06 q-gutter-md row items-start">
 
-        <strong> <p> Bem vindo Aluno. {{ user.user_metadata.name }}</p></strong>
+        <strong> <h4>Bem vindo. {{ user.user_metadata.name }}</h4></strong>
         </div>
     </div>
   </q-page>
