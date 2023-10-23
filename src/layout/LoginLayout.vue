@@ -7,7 +7,7 @@
           <img
             alt="Go Tech"
             src="~assets/Logo-redondo.png"
-            style="width: 200px; height: 200px"
+            style="width: 150px; height: 150px"
           >
         </q-toolbar-title>
 

@@ -6,7 +6,7 @@
           flat
           dense
           round
-          icon="menu"
+          icon="mdi-menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
@@ -19,7 +19,10 @@
           >
         </q-toolbar-title>
 
-        <q-btn-dropdown flat color="white" icon="person" >
+        <q-btn-dropdown
+          flat color="white"
+          icon="mdi-account-off"
+          >
           <q-list>
             <q-item clickable v-close-popup @click="handleLogout">
               <q-item-section>

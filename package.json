@@ -14,7 +14,8 @@
   "dependencies": {
     "@capacitor/android": "^5.5.0",
     "@capacitor/camera": "^5.0.7",
-    "@capacitor/core": "^5.4.1",
+    "@capacitor/core": "^5.5.0",
+    "@capacitor/device": "^5.0.6",
     "@capacitor/filesystem": "^5.1.4",
     "@capacitor/geolocation": "^5.0.6",
     "@capacitor/ios": "^5.5.0",
@@ -25,6 +26,7 @@
     "axios": "^1.5.1",
     "bootstrap": "^5.3.0",
     "bootstrap-vue": "^2.23.1",
+    "jsonpatch": "^3.1.0",
     "lodash": "^4.17.21",
     "qrcode.vue": "^3.4.1",
     "quasar": "^2.6.0",
@@ -33,12 +35,13 @@
     "vue-qr": "^4.0.9",
     "vue-qrcode": "^2.2.0",
     "vue-qrcode-component": "^2.1.1",
-    "vue-qrcode-reader": "^5.3.3",
+    "vue-qrcode-reader": "^5.3.9",
     "vue-router": "^4.2.2",
     "vue3-datepicker": "^0.4.0",
     "vue3-qrcode-reader": "^0.0.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "^5.5.0",
     "@quasar/app-vite": "^1.0.0",
     "@types/lodash": "^4.14.198",
     "autoprefixer": "^10.4.2",

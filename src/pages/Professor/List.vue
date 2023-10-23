@@ -31,7 +31,7 @@
             <q-btn
               icon="mdi-pencil-outline"
               color="info"
-              dense size="sm"
+              dense size="xs"
               @click="handleEdit(props.row)"
              >
               <q-tooltip>
@@ -41,7 +41,7 @@
             <q-btn
               icon="mdi-delete-outline"
               color="negative"
-              dense size="sm"
+              dense size="xs"
               @click="handleRemoveProfessor(props.row)"
               >
 
@@ -54,7 +54,7 @@
       </q-table>
     </div>
       <q-page-sticky
-        position="bottom-right"
+        position="bottom-left"
         :offset="[18, 18]"
       >
         <q-btn
@@ -62,6 +62,7 @@
           fab
           icon="mdi-plus"
           color="secondary"
+          dense size="xs"
           :to="{ name: 'form-professor' }"
         />
 

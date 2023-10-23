@@ -44,5 +44,12 @@
   ],
   "[vue]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "[jsonc]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

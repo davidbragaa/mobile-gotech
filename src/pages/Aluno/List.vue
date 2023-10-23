@@ -24,12 +24,22 @@
         </template>
         <template v-slot:body-cell-actions="props">
           <q-td :props="props" class="q-gutter-x-sm">
-            <q-btn icon="mdi-pencil-outline" color="info" dense size="sm" @click="handleEdit(props.row)">
+            <q-btn
+              icon="mdi-pencil-outline"
+              color="info"
+              dense size="xs"
+              @click="handleEdit(props.row)"
+              >
               <q-tooltip>
                 Edit
               </q-tooltip>
             </q-btn>
-            <q-btn icon="mdi-delete-outline" color="negative" dense size="sm" @click="handleRemoveAluno(props.row)">
+            <q-btn
+              icon="mdi-delete-outline"
+              color="negative"
+              dense size="xs"
+              @click="handleRemoveAluno(props.row)"
+              >
               <q-tooltip>
                 Remove
               </q-tooltip>
@@ -39,8 +49,8 @@
       </q-table>
     </div>
       <q-page-sticky
-        position="bottom-right"
-        :offset="[18, 18]"
+        position="bottom-left"
+        :offset="[15, 10]"
       >
         <q-btn
           v-if="$q.platform.is.mobile"

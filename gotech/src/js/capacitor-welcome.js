@@ -1,15 +1,15 @@
-import { SplashScreen } from '@capacitor/splash-screen';
-import { Camera } from '@capacitor/camera';
+import { SplashScreen } from '@capacitor/splash-screen'
+import { Camera } from '@capacitor/camera'
 
 window.customElements.define(
   'capacitor-welcome',
   class extends HTMLElement {
-    constructor() {
-      super();
+    constructor () {
+      super()
 
-      SplashScreen.hide();
+      SplashScreen.hide()
 
-      const root = this.attachShadow({ mode: 'open' });
+      const root = this.attachShadow({ mode: 'open' })
 
       root.innerHTML = `
     <style>
@@ -86,38 +86,38 @@ window.customElements.define(
         </p>
       </main>
     </div>
-    `;
+    `
     }
 
-    connectedCallback() {
-      const self = this;
+    connectedCallback () {
+      const self = this
 
       self.shadowRoot.querySelector('#take-photo').addEventListener('click', async function (e) {
         try {
           const photo = await Camera.getPhoto({
-            resultType: 'uri',
-          });
+            resultType: 'uri'
+          })
 
-          const image = self.shadowRoot.querySelector('#image');
+          const image = self.shadowRoot.querySelector('#image')
           if (!image) {
-            return;
+            return
           }
 
-          image.src = photo.webPath;
+          image.src = photo.webPath
         } catch (e) {
-          console.warn('User cancelled', e);
+          console.warn('User cancelled', e)
         }
-      });
+      })
     }
   }
-);
+)
 
 window.customElements.define(
   'capacitor-welcome-titlebar',
   class extends HTMLElement {
-    constructor() {
-      super();
-      const root = this.attachShadow({ mode: 'open' });
+    constructor () {
+      super()
+      const root = this.attachShadow({ mode: 'open' })
       root.innerHTML = `
     <style>
       :host {
@@ -129,14 +129,14 @@ window.customElements.define(
       }
       ::slotted(h1) {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
         font-size: 0.9em;
         font-weight: 600;
         color: #fff;
       }
     </style>
     <slot></slot>
-    `;
+    `
     }
   }
-);
+)

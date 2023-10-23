@@ -25,11 +25,16 @@
         </template>
           <template v-slot:body-cell-actions="props">
             <q-td :props="props" class="q-gutter-x-sm">
-                <qrcode-vue
-                :value="getQrCodeValue(props.row)"
-                dense
-                :size="90"
+              <div class="col-8 text-center">
+                <q-btn
+                  v-if="!cameraStart"
+                  label=""
+                  color="secondary"
+                  icon="mdi-camera-iris"
+                  @click="openCamera(props.row)"
                 />
+                <img :src="imageSrc">
+              </div>
             </q-td>
           </template>
       </q-table>
@@ -43,14 +48,11 @@ import { defineComponent, ref, onMounted } from 'vue'
 import useApi from 'src/composables/UseApi'
 import useNotify from 'src/composables/UseNotify'
 import { columnsDisciplinas } from './table'
-import QrcodeVue from 'qrcode.vue'
+import { Camera, CameraResultType } from '@capacitor/camera'
 
 export default defineComponent({
 
   name: 'PageDisciplinaList',
-  components: {
-    QrcodeVue
-  },
   setup () {
     const disciplinas = ref([])
     const loading = ref(true)
@@ -75,21 +77,20 @@ export default defineComponent({
       }
     }
     onMounted(() => {
-      handleListDisciplinas(selectedCurso)
+      handleListDisciplinas()
     })
 
-    // Função para gerar o valor do QR code com base no ID da disciplina
-    const getQrCodeValue = (disciplinaId) => {
-      const qrData = {
-        disciplinaId: disciplinas.value.id,
-        checkinCode: generateCheckinCode() // Gere um código de check-in único
-      }
-      return JSON.stringify(qrData)
-    }
+    const openCamera = async (disciplinas) => {
+      try {
+        const image = await Camera.getPhoto({
+          resultType: CameraResultType.Uri // Capturar resultado como URI
+        })
 
-    const generateCheckinCode = () => {
-      // Aqui você pode gerar um código de check-in único, por exemplo, usando um UUID ou outra lógica personalizada
-      return 'código-de-checkin-único'
+        // O código QR não é mais relevante neste contexto
+        console.log('Imagem capturada:', image.webPath)
+      } catch (error) {
+        console.error('Erro ao acessar a câmera:', error)
+      }
     }
 
     const opções = [
@@ -107,8 +108,7 @@ export default defineComponent({
       disciplinas,
       loading,
       opções,
-      getQrCodeValue // Tornar a função disponível no modelo do componente
-
+      openCamera
     }
   }
 })

@@ -1,13 +1,13 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="row justify-center q-gutter-y-sm">
-      <q-input
-        v-model="disciplinaId"
-        label="ID da disciplina"
-        lazy-rules=""
-        color="secondary"
+    <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-sm">
+      <q-select
+        standout
+        label="Disciplinas"
+        v-model="selectedDisciplina"
+        dense
+        :options="disciplinas"
       />
-
       <q-btn
         label="Gerar QrCode"
         color="secondary"
@@ -15,12 +15,12 @@
         @click="buscarDisciplina"
       />
       <div v-if="disciplinaEncontrada">
-        <h2>Detalhes da Disciplina</h2>
+        <h6>Detalhes da Disciplina</h6>
         <p>ID: {{ disciplinaEncontrada.id }}</p>
         <p>Nome: {{ disciplinaEncontrada.nome }}</p>
         <!-- Outros detalhes da disciplina -->
         <div>
-          <qrcode-vue :value="qrCodeValue" :size="200"></qrcode-vue>
+          <qrcode-vue :value="qrCodeValue" :size="90"></qrcode-vue>
         </div>
       </div>
     </div>
@@ -37,20 +37,37 @@ export default {
     QrcodeVue
   },
   setup () {
-    const disciplinaId = ref('')
+    const selectedDisciplina = ref('')
     const disciplinaEncontrada = ref(null)
-    const qrCodeValue = ref('') // Defina qrCodeValue como uma referência no setup
+    const qrCodeValue = ref('')
+
+    const disciplinas = ref([]) // Array para armazenar as disciplinas vindas da API
+
+    // Utilize sua função da API para buscar as disciplinas e preencher o array
+    const fetchDisciplinas = async () => {
+      try {
+        const api = useApi()
+        const response = await api.getDisciplinas() // Use a função adequada da API para buscar as disciplinas
+        disciplinas.value = response.data // Suponha que o retorno da API é um array de disciplinas
+      } catch (error) {
+        console.error('Erro ao buscar disciplinas:', error.message)
+      }
+    }
+
+    // Chame a função para buscar as disciplinas quando o componente for montado
+    fetchDisciplinas()
 
     const buscarDisciplina = async () => {
       try {
         const api = useApi()
-        const disciplina = await api.getById('disciplinas', disciplinaId.value)
+        const nomeDisciplina = selectedDisciplina
+        const disciplina = await api.getDisciplinaPorNome(nomeDisciplina)
         disciplinaEncontrada.value = disciplina
 
         // Após encontrar a disciplina, chame o método para gerar o QR Code
         gerarQrCode()
       } catch (error) {
-        console.error('Erro ao buscar disciplina:', error)
+        console.error('Erro ao buscar disciplina:', error.message)
       }
     }
 
@@ -67,10 +84,11 @@ export default {
     }
 
     return {
-      disciplinaId,
+      selectedDisciplina,
       disciplinaEncontrada,
       qrCodeValue,
-      buscarDisciplina
+      buscarDisciplina,
+      disciplinas
     }
   }
 }
