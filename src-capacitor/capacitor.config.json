@@ -1,6 +1,6 @@
 {
   "appId": "org.capacitor.quasar.app",
-  "appName": "Go Tech",
+  "appName": "GoTech",
   "bundledWebRuntime": true,
   "npmClient": "yarn",
   "webDir": "www"
