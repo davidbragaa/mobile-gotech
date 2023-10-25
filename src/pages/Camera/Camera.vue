@@ -1,88 +1,86 @@
 <template>
   <q-page padding>
     <div class="row">
-      <div class="col-12 text center">
+      <div class="col-12 text-center">
         <video autoplay width="250rem" ref="videoplay"></video>
       </div>
     </div>
     <div class="col-12 text-center">
       <q-btn
         v-if="!cameraStart"
-        label="Acessar a Camera"
+        label="Acessar a Câmera"
         color="secondary"
         icon="mdi-camera-iris"
-        @click="captureImage"
+        @click="openCamera"
       />
       <img :src="imageSrc">
-
     </div>
   </q-page>
 </template>
 
 <script>
-
 import { Camera, CameraResultType } from '@capacitor/camera'
-// import { capacitor } from '@capacitor/core'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
-// import { useQuasar } from 'quasar'
+import useNotify from 'src/composables/UseNotify'
 
 export default {
-
   name: 'PageCamera',
 
   setup () {
     const imageSrc = ref('')
+    const cameraStart = ref(false)
+    const { notifyError, notifySuccess } = useNotify() // Certifique-se de que o UseNotify esteja configurado
 
-    const isWeb = process.env.VUE_APP_PLATFORM === 'web'
+    const openCamera = async () => {
+      try {
+        cameraStart.value = true
+        const image = await Camera.getPhoto({
+          resultType: CameraResultType.Uri
+        })
 
-    async function captureImage () {
-      if (isWeb) {
-        // Tratar o caso em que o aplicativo está rodando em um ambiente web.
-        console.error('A câmera não está disponível no ambiente web.')
-        return
+        imageSrc.value = image.webPath
+        emitNotification() // Emita a notificação após a imagem ser capturada
+      } catch (error) {
+        notifyError(error.message)
+      } finally {
+        cameraStart.value = false
       }
-      const image = await Camera.getPicture({
-        video: true,
-        quality: 90,
-        allowEditing: true,
-        resultType: CameraResultType.Uri
+    }
 
-        // The result will vary on the value of the resultType option.
-        // CameraResultType.Uri - Get the result from image.webPath
-        // CameraResultType.Base64 - Get the result from image.base64String
-        // CameraResultType.DataUrl - Get the result from image.dataUrl
-      })
-      imageSrc.value = image.webPath
+    const emitNotification = () => {
+      try {
+        // Envie a notificação de presença realizada
+        notifySuccess('Presença realizada', 'Sua presença na aula foi registrada com sucesso.')
+      } catch (error) {
+        notifyError(error.message)
+      }
+    }
+
+    onMounted(() => {
+      // Chame o método openCamera ao montar a página, se necessário
+    })
+
+    const registrarPresenca = async () => {
+      try {
+        // Aqui você pode usar a imagem capturada (imageSrc) ou qualquer outro dado necessário
+        // Envie os dados para o servidor para registrar a presença
+        await axios.post('/registrar-presenca', { image: imageSrc.value })
+
+        // Registro de presença bem-sucedido
+        notifySuccess('Presença registrada com sucesso!')
+      } catch (error) {
+        notifyError(error.message)
+        alert('Erro ao registrar presença. Tente novamente.')
+      }
     }
 
     return {
       imageSrc,
-      captureImage
-      // capacitor
+      openCamera,
+      cameraStart,
+      registrarPresenca
     }
-  },
-  methods: {
-    async registrarPresenca () {
-      try {
-        // Decodifique o valor do código QR (no seu caso, você pode fazer isso na parte do servidor)
-        const decodedValue = JSON.parse(this.value)
-
-        // Envie os dados para o servidor para registrar a presença
-        await axios.post('/registrar-presenca', decodedValue)
-
-        // Registro de presença bem-sucedido
-        alert('Presença registrada com sucesso!')
-      } catch (error) {
-        console.error('Erro ao registrar presença:', error)
-        alert('Erro ao registrar presença. Tente novamente.')
-      }
-    }
-  },
-  mounted () {
-    // Chame o método registrarPresenca quando o código QR for escaneado
-    this.registrarPresenca()
   }
 }
-
 </script>

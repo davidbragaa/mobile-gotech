@@ -4,7 +4,7 @@
       <q-select
         standout
         label="Disciplinas"
-        v-model="selectedDisciplina"
+        v-model="selectedDisciplinas"
         dense
         :options="disciplinas"
       />
@@ -47,7 +47,7 @@ export default {
     const fetchDisciplinas = async () => {
       try {
         const api = useApi()
-        const response = await api.getDisciplinas() // Use a função adequada da API para buscar as disciplinas
+        const response = await api.getById('disciplinas', this.disciplinasId) // Use a função adequada da API para buscar as disciplinas
         disciplinas.value = response.data // Suponha que o retorno da API é um array de disciplinas
       } catch (error) {
         console.error('Erro ao buscar disciplinas:', error.message)
@@ -60,9 +60,9 @@ export default {
     const buscarDisciplina = async () => {
       try {
         const api = useApi()
-        const nomeDisciplina = selectedDisciplina
-        const disciplina = await api.getDisciplinaPorNome(nomeDisciplina)
-        disciplinaEncontrada.value = disciplina
+        const nomeDisciplinas = selectedDisciplina
+        const disciplinas = await api.getDisciplinasPorNome(nomeDisciplinas)
+        disciplinaEncontrada.value = disciplinas
 
         // Após encontrar a disciplina, chame o método para gerar o QR Code
         gerarQrCode()
@@ -84,6 +84,7 @@ export default {
     }
 
     return {
+      disciplinaId: '',
       selectedDisciplina,
       disciplinaEncontrada,
       qrCodeValue,

@@ -10,7 +10,7 @@ const routes = [
       { path: 'email-confirmation', name: 'email-confirmation', component: () => import('pages/EmailConfirmation.vue') },
       { path: 'forgot-password', name: 'forgot-password', component: () => import('pages/ForgotPassword.vue') },
       { path: 'reset-password', name: 'reset-password', component: () => import('pages/ResetPassword.vue') },
-      { path: 'frequencia-public/:id', name: 'frequencia-public', component: () => import('pages/Frequency/Public.vue') }
+      { path: 'frequencia-public/:id', name: 'frequencia-public', component: () => import('src/pages/Frequency/Public.vue') }
 
     ]
   },
@@ -24,6 +24,7 @@ const routes = [
       { path: 'form-aluno/:id?', name: 'form-aluno', component: () => import('pages/Aluno/Form.vue') },
       { path: 'frequencia', name: 'frequencia', component: () => import('pages/Frequency/List.vue') },
       { path: 'form-frequencia/:id?', name: 'form-frequencia', component: () => import('pages/Frequency/Form.vue') },
+      { path: 'presenca', name: 'presenca', component: () => import('src/pages/Presenca/List.vue') },
       { path: 'qrcode', name: 'qrcode', component: () => import('pages/Frequency/QrCode.vue') },
       { path: 'disciplina', name: 'disciplina', component: () => import('pages/Disciplina/List.vue') },
       { path: 'form-disciplina/:id?', name: 'form-disciplina', component: () => import('pages/Disciplina/Form.vue') },

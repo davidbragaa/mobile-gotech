@@ -2,26 +2,27 @@
   <q-page padding>
     <div class="row justify-center">
       <div class="col-12 text-center">
-        <p class="text-h4">
-        Frequência
+        <p class="text-he">
+         Aluno
         </p>
       </div>
       <q-form class="col-md-7 col-xs-12 col-sm-12 q-gutter-y-md" @submit.prevent="handleSubmit">
         <q-input
         label="Name"
         v-model="form.name"
-        :rules="[val => (val.length > 0) || 'Name is required']"
-        />
-
-        <q-editor
-        v-model="form.description"
-        min-height="5rem"
+        :rules="[val => !!val|| 'Name is required']"
         />
 
         <q-input
-        label="Quantidade de Aulas"
-        v-model="form.amount"
-        :rules="[val => !!val|| 'Amount is required']"
+        label="Email"
+        v-model="form.email"
+        :rules="[val => (val && val.length > 0) || 'Email is required']"
+        />
+
+        <q-input
+        label="R.A"
+        v-model="form.ra"
+        :rules="[val => !!val|| 'RA is required']"
         type="number"
         />
 
@@ -34,12 +35,12 @@
           />
 
           <q-btn
-          label="Voltar"
+          label="Cancelar"
           color="primary"
           class="full-width"
           rounded
           flat
-          :to="{name: 'frequency'}"
+          :to="{ name: 'aluno' }"
           />
 
       </q-form>
@@ -55,55 +56,49 @@ import useApi from 'src/composables/UseApi'
 import useNotify from 'src/composables/UseNotify'
 
 export default defineComponent({
-  name: 'PageFormFrequencia',
+  name: 'PageFormAluno',
   setup () {
-    const table = 'aluno'
+    const table = 'Aluno'
     const router = useRouter()
     const route = useRoute()
-    const { post, getById, update, list } = useApi()
+    const { post, getById, update } = useApi()
     const { notifyError, notifySuccess } = useNotify()
 
     const isUpdate = computed(() => route.params.id)
 
-    let frequencia = {}
-    const optionsAluno = ref([])
+    let aluno = {}
     const form = ref({
       name: '',
-      description: '',
-      amount: 0,
-      aluno_id: ''
+      email: '',
+      ra: ''
     })
 
     onMounted(() => {
-      handleListAluno()
       if (isUpdate.value) {
-        handleGetFrequencia(isUpdate.value)
+        handleGetAluno(isUpdate.value)
       }
     })
-
-    const handleListAluno = async () => {
-      optionsAluno.value = await list('aluno')
-    }
 
     const handleSubmit = async () => {
       try {
         if (isUpdate.value) {
           await update(table, form.value)
-          notifySuccess('Atualizado com Sucesso')
+          notifySuccess('Update Sucesso')
         } else {
           await post(table, form.value)
           notifyError('Salvo com Sucesso')
         }
-        router.push({ name: 'frequency' })
+
+        router.push({ name: 'aluno' })
       } catch (error) {
         notifyError(error.message)
       }
     }
 
-    const handleGetFrequencia = async (id) => {
+    const handleGetAluno = async (id) => {
       try {
-        frequencia = await getById(table, id)
-        form.value = frequencia
+        aluno = await getById(table, id)
+        form.value = aluno
       } catch (error) {
         notifyError(error.message)
       }
@@ -111,8 +106,7 @@ export default defineComponent({
     return {
       handleSubmit,
       form,
-      isUpdate,
-      optionsAluno
+      isUpdate
     }
   }
 })

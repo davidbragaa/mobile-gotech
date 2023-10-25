@@ -104,8 +104,15 @@ const linksList = [
   {
     title: 'Frequencia',
     caption: '',
-    icon: 'mdi-clipboard',
+    icon: 'mdi-draw',
     routeName: 'frequencia'
+  },
+
+  {
+    title: 'Camera',
+    caption: '',
+    icon: 'mdi-camera-iris',
+    routeName: 'camera'
   },
 
   {
@@ -118,8 +125,8 @@ const linksList = [
   {
     title: 'Presença',
     caption: '',
-    icon: 'mdi-account-check',
-    routeName: 'camera'
+    icon: 'mdi-account-check ',
+    routeName: 'presenca'
   },
   {
     title: 'Arquivos',

@@ -1,0 +1,1 @@
+import{u as s}from"./use-quasar.70d57dbe.js";function r(){const o=s();return{notifySuccess:t=>{o.notify({type:"positive",message:t||"All right !"})},notifyError:t=>{o.notify({type:"negative",message:t||"Failed !"})}}}export{r as u};

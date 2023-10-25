@@ -83,7 +83,7 @@ export default defineComponent({
       try {
         if (isUpdate.value) {
           await update(table, form.value)
-          notifySuccess('Update Sucesso')
+          notifySuccess('Atualizado com Sucesso')
         } else {
           await post(table, form.value)
           notifyError('Salvo com Sucesso')
