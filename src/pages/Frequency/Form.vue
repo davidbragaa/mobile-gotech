@@ -92,7 +92,7 @@ export default defineComponent({
           notifySuccess('Atualizado com Sucesso')
         } else {
           await post(table, form.value)
-          notifyError('Salvo com Sucesso')
+          notifySuccess('Salvo com Sucesso')
         }
         router.push({ name: 'frequency' })
       } catch (error) {

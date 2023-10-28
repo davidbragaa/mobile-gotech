@@ -35,10 +35,9 @@
     "vue-qr": "^4.0.9",
     "vue-qrcode": "^2.2.0",
     "vue-qrcode-component": "^2.1.1",
-    "vue-qrcode-reader": "^5.3.9",
+    "vue-qrcode-reader": "^5.4.0",
     "vue-router": "^4.2.2",
-    "vue3-datepicker": "^0.4.0",
-    "vue3-qrcode-reader": "^0.0.1"
+    "vue3-datepicker": "^0.4.0"
   },
   "devDependencies": {
     "@capacitor/cli": "^5.5.0",

@@ -28,6 +28,7 @@
               label="Voltar"
               color="dark"
               class="full-width"
+              outline
               rounded
               flat
               :to="{name: 'login'}"

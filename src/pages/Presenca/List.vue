@@ -9,7 +9,7 @@
         :loading="loading"
       >
         <template v-slot:top>
-          <span class="text-h6">Alunos</span>
+          <span class="text-h6">Registro de Presença</span>
           <q-space />
         </template>
         <template v-slot:body-cell-actions="props">

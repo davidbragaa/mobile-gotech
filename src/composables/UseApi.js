@@ -1,6 +1,5 @@
 import useSupabase from 'src/boot/supabase'
 import useAuthUser from './UseAuthUser'
-import { v4 as uuidv4 } from 'uuid'
 
 export default function useApi () {
   const { supabase } = useSupabase()
@@ -23,24 +22,22 @@ export default function useApi () {
     return data
   }
 
-  const getById = async (table, id) => {
+  const getById = async (table, id, nome) => {
     const { data, error } = await supabase
       .from(table)
       .select('*')
-      .eq('id', id)
+      .eq('id', id, 'nome', nome)
     if (error) throw error
     return data[0]
   }
 
   const post = async (table, form) => {
-    const checkinCode = uuidv4()
     const { data, error } = await supabase
       .from(table)
       .insert([
         {
           ...form,
-          user_id: user.value.id,
-          checkin_code: checkinCode
+          user_id: user.value.id
         }
       ])
     if (error) throw error

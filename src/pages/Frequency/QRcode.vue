@@ -1,26 +1,37 @@
 <template>
   <q-page class="flex flex-center">
     <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-sm">
-      <q-select
-        standout
-        label="Disciplinas"
-        v-model="selectedDisciplinas"
-        dense
-        :options="disciplinas"
-      />
-      <q-btn
-        label="Gerar QrCode"
-        color="secondary"
-        icon="mdi-qrcode"
-        @click="buscarDisciplina"
-      />
-      <div v-if="disciplinaEncontrada">
+        <span class="text-h6">
+            Disciplinas
+        </span>
+          <q-space />
+            <q-select
+              standout
+              label= "Curso"
+              v-model="selectedCurso"
+              dense
+              :options= "opções"
+            />
+            <q-select
+              standout
+              label="Disciplinas"
+              v-model="selectedDisciplina"
+              dense
+              :options="disciplinas"
+              option-label="nome"
+            />
+            <q-btn
+              label="Gerar QrCode"
+              color="secondary"
+              icon="mdi-qrcode"
+              @click="gerarQrCode"
+            />
+      <div v-if="selectedDisciplina">
         <h6>Detalhes da Disciplina</h6>
-        <p>ID: {{ disciplinaEncontrada.id }}</p>
-        <p>Nome: {{ disciplinaEncontrada.nome }}</p>
+        <p>Nome: {{ selectedDisciplina.nome }}</p>
         <!-- Outros detalhes da disciplina -->
         <div>
-          <qrcode-vue :value="qrCodeValue" :size="90"></qrcode-vue>
+          <qrcode-vue :value="qrCodeValue" :size="150"></qrcode-vue>
         </div>
       </div>
     </div>
@@ -28,69 +39,74 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import useApi from 'src/composables/UseApi'
 import QrcodeVue from 'qrcode.vue'
+import useNotify from 'src/composables/UseNotify'
 
-export default {
+export default defineComponent({
   components: {
     QrcodeVue
   },
   setup () {
     const selectedDisciplina = ref('')
-    const disciplinaEncontrada = ref(null)
     const qrCodeValue = ref('')
+    const disciplinas = ref([])
+    const { notifyError } = useNotify()
+    const table = 'Disciplinas'
+    const loading = ref(true)
+    const selectedCurso = ref(null)
 
-    const disciplinas = ref([]) // Array para armazenar as disciplinas vindas da API
+    const { list } = useApi() // Mova a instância da API para fora das funções para reutilização
 
-    // Utilize sua função da API para buscar as disciplinas e preencher o array
     const fetchDisciplinas = async () => {
       try {
-        const api = useApi()
-        const response = await api.getById('disciplinas', this.disciplinasId) // Use a função adequada da API para buscar as disciplinas
-        disciplinas.value = response.data // Suponha que o retorno da API é um array de disciplinas
+        loading.value = true
+        if (selectedCurso.value) {
+          // Se um curso foi selecionado, filtre as disciplinas com base no curso
+          disciplinas.value = await list(table, { curso: selectedCurso.value })
+        } else {
+          // Caso contrário, liste todas as disciplinas
+          disciplinas.value = await list(table)
+        }
+        loading.value = false
+        // gerarQrCode()
       } catch (error) {
-        console.error('Erro ao buscar disciplinas:', error.message)
-      }
-    }
-
-    // Chame a função para buscar as disciplinas quando o componente for montado
-    fetchDisciplinas()
-
-    const buscarDisciplina = async () => {
-      try {
-        const api = useApi()
-        const nomeDisciplinas = selectedDisciplina
-        const disciplinas = await api.getDisciplinasPorNome(nomeDisciplinas)
-        disciplinaEncontrada.value = disciplinas
-
-        // Após encontrar a disciplina, chame o método para gerar o QR Code
-        gerarQrCode()
-      } catch (error) {
-        console.error('Erro ao buscar disciplina:', error.message)
+        notifyError(error.message)
       }
     }
 
     const gerarQrCode = () => {
-      // Verifique se a disciplina foi encontrada antes de gerar o QR code
-      if (disciplinaEncontrada.value) {
-        // Crie uma string com os dados desejados, incluindo a data e hora da captura
+      if (selectedDisciplina.value) {
         const dataHoraCaptura = new Date().toLocaleString()
-        const qrCodeData = `ID: ${disciplinaEncontrada.value.id}\nNome: ${disciplinaEncontrada.value.nome}\nCapturado em: ${dataHoraCaptura}`
-
-        // Atribua a string ao valor do QR code
+        const qrCodeData = `ID: ${selectedDisciplina.value.id}\nNome: ${selectedDisciplina.value.nome}\nCapturado em: ${dataHoraCaptura}`
         qrCodeValue.value = qrCodeData
       }
     }
 
+    onMounted(() => {
+      // Chame a função para buscar as disciplinas quando o componente for montado
+      fetchDisciplinas()
+    })
+
+    const opções = [
+      'Administração',
+      'Desenvolvimento de Sistemas',
+      'Informática',
+      'Logística',
+      'Recursos Humanos',
+      'Segurança do Trabalho'
+    ]
+
     return {
-      disciplinaId: '',
       selectedDisciplina,
-      disciplinaEncontrada,
+      selectedCurso,
       qrCodeValue,
-      buscarDisciplina,
-      disciplinas
+      gerarQrCode,
+      // buscarDisciplina,
+      disciplinas,
+      opções
     }
   }
-}
+})
 </script>

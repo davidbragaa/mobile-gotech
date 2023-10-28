@@ -27,15 +27,16 @@
 
         <q-btn
           :label="isUpdate ? 'Atualizar' : 'Salvar'"
-          color="primary"
+          color="secondary"
           class="full-width"
+          outline
           rounded
           type="submit"
           />
 
           <q-btn
           label="Cancelar"
-          color="primary"
+          color="secondary"
           class="full-width"
           rounded
           flat
@@ -82,10 +83,10 @@ export default defineComponent({
       try {
         if (isUpdate.value) {
           await update(table, form.value)
-          notifySuccess('Update Sucesso')
+          notifySuccess('Atualizado com Sucesso')
         } else {
           await post(table, form.value)
-          notifyError('Salvo com Sucesso')
+          notifySuccess('Salvo com Sucesso')
         }
 
         router.push({ name: 'professor' })

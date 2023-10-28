@@ -129,10 +129,10 @@ const linksList = [
     routeName: 'presenca'
   },
   {
-    title: 'Arquivos',
-    caption: 'Arquivos disponibilizados',
-    icon: 'backup',
-    routeName: ''
+    title: 'Historico',
+    caption: '',
+    icon: 'mdi-newspaper-variant-outline',
+    routeName: 'historico'
   },
   {
     title: 'Certificados',

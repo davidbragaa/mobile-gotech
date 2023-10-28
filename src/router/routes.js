@@ -31,7 +31,8 @@ const routes = [
       { path: 'laboratorio', name: 'laboratorio', component: () => import('pages/Laboratorio/List.vue') },
       { path: 'camera', name: 'camera', component: () => import('pages/Camera/Camera.vue') },
       { path: 'professor', name: 'professor', component: () => import('pages/Professor/List.vue') },
-      { path: 'form-professor/:id?', name: 'form-professor', component: () => import('pages/Professor/Form.vue') }
+      { path: 'form-professor/:id?', name: 'form-professor', component: () => import('pages/Professor/Form.vue') },
+      { path: 'historico', name: 'historico', component: () => import('pages/Historico/List.vue') }
       // { path: '', component: () => import('pages/Index.vue') }
 
     ],
