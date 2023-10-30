@@ -1,6 +1,6 @@
 # Go Tech (mobile-gotech)
-
-A Quasar Project
+O Go Tech é um aplicativo móvel para registro de alunos que visa a gestão e o acompanhamento da participação dos alunos em cursos técnicos e de ensino
+superior. Com a utilização do Go Tech, é possível simplificar e agilizar o processo de registro de presença de alunos, o que facilita o acesso às informações pelos docentes por disciplinas, coordenadores dos cursos e funcionários da instituição de ensino.
 
 ## Install the dependencies
 ```bash
