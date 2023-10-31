@@ -13,32 +13,61 @@
             Disciplinas
           </span>
             <q-space />
-            <option disabled value="true" color="primary">Escolha o Curso</option>
+              <q-btn
+                v-if="$q.platform.is.desktop"
+                label="Adicionar"
+                color="secondary"
+                icon="mdi-plus"
+                dense
+                :to="{ name: 'form-disciplina' }"
+                />
               <q-select
-              standout
-              label= "Curso"
+              label="Curso"
               v-model="selectedCurso"
               dense
-              :options= "opções"
-              />
-              <!-- Adicione uma coluna para exibir o QR code -->
+              standout
+              outlined
+              :option="opções"
+                />
         </template>
           <template v-slot:body-cell-actions="props">
             <q-td :props="props" class="q-gutter-x-sm">
-              <div class="col-8 text-center">
-                <q-btn
-                  v-if="!cameraStart"
-                  label=""
-                  color="secondary"
-                  icon="mdi-camera-iris"
-                  @click="openCamera(props.row)"
-                />
-                <img :src="imageSrc">
-              </div>
+              <q-btn
+              icon="mdi-pencil-outline"
+              color="info"
+              dense size="xs"
+              @click="handleEdit(props.row)"
+              >
+              <q-tooltip>
+                Editar
+              </q-tooltip>
+            </q-btn>
+              <q-btn
+                icon="mdi-delete-outline"
+                color="negative"
+                dense size="xs"
+                @click="handleRemoveDisciplinas(props.row)"
+                >
+                <q-tooltip>
+                  Remove
+                </q-tooltip>
+              </q-btn>
             </q-td>
           </template>
       </q-table>
     </div>
+      <q-page-sticky
+        position="bottom-left"
+        :offset="[15, 10]"
+      >
+        <q-btn
+          v-if="$q.platform.is.mobile"
+          fab
+          icon="mdi-plus"
+          color="secondary"
+          :to="{ name: 'form-aluno' }"
+        />
+        </q-page-sticky>
   </q-page>
 </template>
 
@@ -47,19 +76,24 @@
 import { defineComponent, ref, onMounted } from 'vue'
 import useApi from 'src/composables/UseApi'
 import useNotify from 'src/composables/UseNotify'
+import { useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
 import { columnsDisciplinas } from './table'
-import { Camera, CameraResultType } from '@capacitor/camera'
 
 export default defineComponent({
 
   name: 'PageDisciplinaList',
   setup () {
     const disciplinas = ref([])
+    const curso = ref([])
     const loading = ref(true)
     const table = 'Disciplinas'
-    const { list } = useApi()
-    const { notifyError } = useNotify()
-    const selectedCurso = ref(null)
+    const router = useRouter()
+    const $q = useQuasar()
+
+    const { list, remove } = useApi()
+    const { notifyError, notifySuccess } = useNotify()
+    const selectedCurso = ref([])
 
     const handleListDisciplinas = async () => {
       try {
@@ -76,39 +110,59 @@ export default defineComponent({
         notifyError(error.message)
       }
     }
-    onMounted(() => {
-      handleListDisciplinas()
-    })
 
-    const openCamera = async (disciplinas) => {
+    const handleEdit = (disciplinas) => {
+      router.push({ name: 'form-disciplina', params: { id: disciplinas.id } })
+    }
+
+    const handleRemoveDisciplinas = async (disciplinas) => {
       try {
-        const image = await Camera.getPhoto({
-          resultType: CameraResultType.Uri // Capturar resultado como URI
+        $q.dialog({
+          title: 'Confirm',
+          message: `Você está certo de deletar ${disciplinas.value.nome} ?`,
+          cancel: true,
+          persistent: true
+        }).onOk(async () => {
+          await remove(table, disciplinas.value.id)
+          notifySuccess('Delete com sucesso')
+          handleListDisciplinas()
         })
-
-        // O código QR não é mais relevante neste contexto
-        console.log('Imagem capturada:', image.webPath)
       } catch (error) {
-        console.error('Erro ao acessar a câmera:', error)
+        notifyError(error.message)
       }
     }
 
-    const opções = [
-      'Administração',
-      'Desenvolvimento de Sistemas',
-      'Informática',
-      'Logística',
-      'Recursos Humanos',
-      'Segurança do Trabalho'
-    ]
+    // Adicione uma chamada para obter a lista de cursos
+    const fetchCursos = async () => {
+      try {
+        curso.value = await list(table)
+      } catch (error) {
+        notifyError(error.message)
+      }
+    }
+    onMounted(() => {
+      handleListDisciplinas()
+      fetchCursos()
+    })
+
+    // const opções = [
+    //   'Administração',
+    //   'Desenvolvimento de Sistemas',
+    //   'Informática',
+    //   'Logística',
+    //   'Recursos Humanos',
+    //   'Segurança do Trabalho'
+    // ]
 
     return {
       columnsDisciplinas,
-      selectedCurso,
       disciplinas,
+      curso,
       loading,
-      opções,
-      openCamera
+      opções: curso.value.map(curso => curso.nome),
+      handleEdit,
+      handleRemoveDisciplinas,
+      selectedCurso
     }
   }
 })

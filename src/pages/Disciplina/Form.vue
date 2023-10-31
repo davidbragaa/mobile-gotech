@@ -9,19 +9,19 @@
       <q-form class="col-md-7 col-xs-12 col-sm-12 q-gutter-y-md" @submit.prevent="handleSubmit">
         <q-input
         label="Name"
-        v-model="form.name"
+        v-model="form.nome"
         :rules="[val => !!val|| 'Name is required']"
         />
 
         <q-input
         label="Modulo"
-        v-model="form.name"
+        v-model="form.modulo"
         :rules="[val => !!val|| 'Modulo is required']"
         type="number"
         />
 
         <q-btn
-          :label="Save ? 'Update' : 'Salve'"
+          :label="Save ? 'Atualizar' : 'Salvar'"
           color="secondary"
           class="full-width"
           outline
@@ -30,7 +30,7 @@
           />
 
           <q-btn
-          label="Cancel"
+          label="Cancelar"
           color="secondary"
           class="full-width"
           rounded
@@ -53,7 +53,7 @@ import useNotify from 'src/composables/UseNotify'
 export default defineComponent({
   name: 'PageFormDisciplina',
   setup () {
-    const table = 'disciplina'
+    const table = 'Disciplinas'
     const router = useRouter()
     const route = useRoute()
     const { post, getById, update } = useApi()
@@ -61,7 +61,7 @@ export default defineComponent({
 
     const isUpdate = computed(() => route.params.id)
 
-    let disciplina = {}
+    let disciplinas = {}
     const form = ref({
       name: '',
       modulo: ''
@@ -69,7 +69,7 @@ export default defineComponent({
 
     onMounted(() => {
       if (isUpdate.value) {
-        handleGetDisciplina(isUpdate.value)
+        handleGetDisciplinas(isUpdate.value)
       }
     })
 
@@ -77,22 +77,22 @@ export default defineComponent({
       try {
         if (isUpdate.value) {
           await update(table, form.value)
-          notifySuccess('Update Sucesso')
+          notifySuccess('Atualizado com Sucesso')
         } else {
           await post(table, form.value)
           notifySuccess('Salvo com Sucesso')
         }
 
-        router.push({ name: disciplina })
+        router.push({ name: 'disciplina' })
       } catch (error) {
         notifyError(error.message)
       }
     }
 
-    const handleGetDisciplina = async (id) => {
+    const handleGetDisciplinas = async (id) => {
       try {
-        disciplina = await getById(table, id)
-        form.value = disciplina
+        disciplinas = await getById(table, id)
+        form.value = disciplinas
       } catch (error) {
         notifyError(error.message)
       }

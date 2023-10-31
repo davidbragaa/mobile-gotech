@@ -26,10 +26,10 @@
               icon="mdi-qrcode"
               @click="gerarQrCode"
             />
-      <div v-if="selectedDisciplina">
-        <h6>Detalhes da Disciplina</h6>
-        <p>Nome: {{ selectedDisciplina.nome }}</p>
-        <!-- Outros detalhes da disciplina -->
+        <div v-if="selectedDisciplina">
+          <h6>Detalhes da Disciplina</h6>
+          <p>Nome: {{ selectedDisciplina.nome }}</p>
+          <!-- Outros detalhes da disciplina -->
         <div>
           <qrcode-vue :value="qrCodeValue" :size="150"></qrcode-vue>
         </div>
