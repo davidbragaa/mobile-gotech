@@ -9,7 +9,7 @@
       <q-form class="col-md-7 col-xs-12 col-sm-12 q-gutter-y-md" @submit.prevent="handleSubmit">
         <q-input
         label="Name"
-        v-model="form.name"
+        v-model="form.nome"
         :rules="[val => !!val|| 'Name is required']"
         />
 
@@ -69,7 +69,7 @@ export default defineComponent({
 
     let aluno = {}
     const form = ref({
-      name: '',
+      nome: '',
       email: '',
       ra: ''
     })

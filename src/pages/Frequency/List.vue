@@ -10,17 +10,9 @@
       >
         <template v-slot:top>
           <span class="text-h6">
-            Frequencia
+            Frequência
           </span>
             <q-space />
-            <q-btn
-              v-if="$q.platform.is.desktop"
-              label="Adicionar"
-              color="secondary"
-              icon="mdi-plus"
-              dense
-              :to="{ name: 'form-frequencia' }"
-              />
         </template>
           <template>
               <div class="q-pa-md">
@@ -30,24 +22,16 @@
                 </div>
               </div>
             </template>
-          <template v-slot:body-cell-img_url="props">
-            <q-td :props="props">
-              <q-avatar v-if="props.row.img_url">
-                <img src="props.row.img_url">
-              </q-avatar>
-              <q-avatar v-else color="gray" text-color="white" icon="mdi-image-off" />
-            </q-td>
-          </template>
         <template v-slot:body-cell-actions="props">
           <q-td :props="props" class="q-gutter-x-sm">
-            <q-btn icon="mdi-pencil-outline" color="info" dense size="sm" @click="handleEdit(props.row)">
+            <q-btn
+              icon="mdi-pencil-outline"
+              color="info"
+              dense size="sm"
+              @click="handleEdit(props.row)"
+            >
               <q-tooltip>
                 Edit
-              </q-tooltip>
-            </q-btn>
-            <q-btn icon="mdi-delete-outline" color="negative" dense size="sm" @click="handleListFrequencia(props.row)">
-              <q-tooltip>
-                Remove
               </q-tooltip>
             </q-btn>
           </q-td>
@@ -58,13 +42,6 @@
       position="bottom-right"
       :offset="[18, 18]"
       >
-        <q-btn
-          v-if="$q.platform.is.mobile"
-          fab
-          icon="mdi-plus"
-          color="secondary"
-          :to="{ name: 'form-frequencia' }"
-         />
       </q-page-sticky>
   </q-page>
 </template>
@@ -72,7 +49,6 @@
 <script>
 import { defineComponent, ref, onMounted } from 'vue'
 import useApi from 'src/composables/UseApi'
-import useAuthUser from 'src/composables/UseAuthUser'
 import useNotify from 'src/composables/UseNotify'
 import { useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
@@ -89,13 +65,12 @@ export default defineComponent({
     const $q = useQuasar()
 
     const { list, remove } = useApi()
-    const { user } = useAuthUser
     const { notifyError, notifySuccess } = useNotify()
 
     const handleListFrequencia = async () => {
       try {
         loading.value = true
-        aluno.value = await list(table, user.value.id)
+        aluno.value = await list(table)
         loading.value = false
       } catch (error) {
         notifyError(error.message)
@@ -103,14 +78,14 @@ export default defineComponent({
     }
 
     const handleEdit = (aluno) => {
-      router.push({ name: 'form-aluno', params: { id: aluno.value.id } })
+      router.push({ name: 'form-frequencia', params: { id: aluno.id } })
     }
 
-    const handleRemoveFrequencia = async (Aluno) => {
+    const handleRemoveFrequencia = async (aluno) => {
       try {
         $q.dialog({
-          title: 'Confirm',
-          message: `Você etsá certo de deletar ${aluno.value.nome} ?`,
+          title: 'Atenção',
+          message: `Você está certo de remover a presença do ${aluno.nome} ?`,
           cancel: true,
           persistent: true
         }).onOk(async () => {
@@ -132,11 +107,11 @@ export default defineComponent({
       aluno,
       loading,
       handleEdit,
-      handleRemoveFrequencia,
-      teal: ref(true),
-      orange: ref(true),
-      red: ref(true),
-      cyan: ref(false)
+      handleRemoveFrequencia
+      // teal: ref(true),
+      // orange: ref(true),
+      // red: ref(true),
+      // cyan: ref(false)
 
     }
   }

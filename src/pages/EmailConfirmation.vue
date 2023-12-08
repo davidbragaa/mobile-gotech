@@ -13,6 +13,7 @@
               label="Voltar para o Login"
               color="secondary"
               class="full-width"
+              outline
               rounded
               :to="{name: 'login'}"
               />

@@ -1,7 +1,7 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page padding>
     <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-sm">
-        <span class="text-h6">
+        <span class="text-h6 text-left">
             Disciplinas
         </span>
           <q-space />
@@ -10,6 +10,8 @@
               label= "Curso"
               v-model="selectedCurso"
               dense
+              outlined
+              rounded
               :options= "opções"
             />
             <q-select
@@ -17,6 +19,8 @@
               label="Disciplinas"
               v-model="selectedDisciplina"
               dense
+              rounded
+              outlined
               :options="disciplinas"
               option-label="nome"
             />
@@ -24,14 +28,15 @@
               label="Gerar QrCode"
               color="secondary"
               icon="mdi-qrcode"
+              rounded
               @click="gerarQrCode"
             />
         <div v-if="selectedDisciplina">
           <h6>Detalhes da Disciplina</h6>
           <p>Nome: {{ selectedDisciplina.nome }}</p>
           <!-- Outros detalhes da disciplina -->
-        <div>
-          <qrcode-vue :value="qrCodeValue" :size="150"></qrcode-vue>
+        <div class="flex flex-center">
+          <qrcode-vue v-if="qrCodeValue !== ''" :value="qrCodeValue" :size="200"></qrcode-vue>
         </div>
       </div>
     </div>
@@ -70,7 +75,6 @@ export default defineComponent({
           disciplinas.value = await list(table)
         }
         loading.value = false
-        // gerarQrCode()
       } catch (error) {
         notifyError(error.message)
       }

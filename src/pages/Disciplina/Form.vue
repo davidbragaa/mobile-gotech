@@ -8,9 +8,9 @@
       </div>
       <q-form class="col-md-7 col-xs-12 col-sm-12 q-gutter-y-md" @submit.prevent="handleSubmit">
         <q-input
-        label="Name"
+        label="Disciplina"
         v-model="form.nome"
-        :rules="[val => !!val|| 'Name is required']"
+        :rules="[val => !!val|| 'Disciplina is required']"
         />
 
         <q-input
@@ -18,6 +18,14 @@
         v-model="form.modulo"
         :rules="[val => !!val|| 'Modulo is required']"
         type="number"
+        />
+
+        <q-select
+        label="Curso"
+        v-model="selectedCurso"
+        :options= "opções"
+        lazy-rules=""
+        :rules="[val => !!val|| 'Curso of user required']"
         />
 
         <q-btn
@@ -58,6 +66,7 @@ export default defineComponent({
     const route = useRoute()
     const { post, getById, update } = useApi()
     const { notifyError, notifySuccess } = useNotify()
+    const selectedCurso = ref(null)
 
     const isUpdate = computed(() => route.params.id)
 
@@ -97,10 +106,21 @@ export default defineComponent({
         notifyError(error.message)
       }
     }
+
+    const opções = [
+      'Administração',
+      'Desenvolvimento de Sistemas',
+      'Informática',
+      'Logística',
+      'Recursos Humanos',
+      'Segurança do Trabalho'
+    ]
     return {
       handleSubmit,
       form,
-      isUpdate
+      isUpdate,
+      opções,
+      selectedCurso
     }
   }
 })

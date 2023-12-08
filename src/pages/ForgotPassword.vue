@@ -26,7 +26,7 @@
 
             <q-btn
               label="Voltar"
-              color="dark"
+              color="secondary"
               class="full-width"
               outline
               rounded

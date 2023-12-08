@@ -109,8 +109,8 @@ export default defineComponent({
     const handleRemoveProfessor = async (professor) => {
       try {
         $q.dialog({
-          title: 'Confirma',
-          message: `Você está certo de deletar ${professor.value.nome} ?`,
+          title: 'Atenção',
+          message: `Você está certo de apagar ${professor.nome} da lista?`,
           cancel: true,
           persistent: true
         }).onOk(async () => {

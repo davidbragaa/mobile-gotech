@@ -22,12 +22,11 @@
                 :to="{ name: 'form-disciplina' }"
                 />
               <q-select
+              standout
               label="Curso"
               v-model="selectedCurso"
               dense
-              standout
-              outlined
-              :option="opções"
+              option: opções
                 />
         </template>
           <template v-slot:body-cell-actions="props">
@@ -65,7 +64,7 @@
           fab
           icon="mdi-plus"
           color="secondary"
-          :to="{ name: 'form-aluno' }"
+          :to="{ name: 'form-disciplina' }"
         />
         </q-page-sticky>
   </q-page>
@@ -118,8 +117,8 @@ export default defineComponent({
     const handleRemoveDisciplinas = async (disciplinas) => {
       try {
         $q.dialog({
-          title: 'Confirm',
-          message: `Você está certo de deletar ${disciplinas.value.nome} ?`,
+          title: 'Atenção',
+          message: `Você está certo de apagar ${disciplinas.nome}da lista ?`,
           cancel: true,
           persistent: true
         }).onOk(async () => {
@@ -145,24 +144,24 @@ export default defineComponent({
       fetchCursos()
     })
 
-    // const opções = [
-    //   'Administração',
-    //   'Desenvolvimento de Sistemas',
-    //   'Informática',
-    //   'Logística',
-    //   'Recursos Humanos',
-    //   'Segurança do Trabalho'
-    // ]
+    const opções = [
+      'Administração',
+      'Desenvolvimento de Sistemas',
+      'Informática',
+      'Logística',
+      'Recursos Humanos',
+      'Segurança do Trabalho'
+    ]
 
     return {
       columnsDisciplinas,
       disciplinas,
       curso,
       loading,
-      opções: curso.value.map(curso => curso.nome),
       handleEdit,
       handleRemoveDisciplinas,
-      selectedCurso
+      selectedCurso,
+      option: opções
     }
   }
 })

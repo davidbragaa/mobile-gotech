@@ -22,30 +22,30 @@
               :to="{ name: 'form-aluno' }"
               />
         </template>
-        <template v-slot:body-cell-actions="props">
-          <q-td :props="props" class="q-gutter-x-sm">
-            <q-btn
-              icon="mdi-pencil-outline"
-              color="info"
-              dense size="xs"
-              @click="handleEdit(props.row)"
-              >
-              <q-tooltip>
-                Edit
-              </q-tooltip>
-            </q-btn>
-            <q-btn
-              icon="mdi-delete-outline"
-              color="negative"
-              dense size="xs"
-              @click="handleRemoveAluno(props.row)"
-              >
-              <q-tooltip>
-                Remove
-              </q-tooltip>
-            </q-btn>
-          </q-td>
-        </template>
+          <template v-slot:body-cell-actions="props">
+            <q-td :props="props" class="q-gutter-x-sm">
+              <q-btn
+                icon="mdi-pencil-outline"
+                color="info"
+                dense size="xs"
+                @click="handleEdit(props.row)"
+                >
+                <q-tooltip>
+                  Edit
+                </q-tooltip>
+              </q-btn>
+              <q-btn
+                icon="mdi-delete-outline"
+                color="negative"
+                dense size="xs"
+                @click="handleRemoveAluno(props.row)"
+                >
+                <q-tooltip>
+                  Remove
+                </q-tooltip>
+              </q-btn>
+            </q-td>
+          </template>
       </q-table>
     </div>
       <q-page-sticky
@@ -102,8 +102,8 @@ export default defineComponent({
     const handleRemoveAluno = async (aluno) => {
       try {
         $q.dialog({
-          title: 'Confirm',
-          message: `Você está certo de deletar ${aluno.value.nome} ?`,
+          title: 'Atenção',
+          message: `Você está certo de apagar ${aluno.nome} da lista ?`,
           cancel: true,
           persistent: true
         }).onOk(async () => {

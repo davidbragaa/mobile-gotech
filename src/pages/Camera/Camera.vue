@@ -1,15 +1,12 @@
 <template>
   <q-page padding>
     <div class="row justify-center q-gutter-pt-sm">
-      <div
-        v-if="!showCamera"
-        class="col-12 text-center q-pt-md"
-      >
+      <div v-if="!showCamera" class="col-12 text-center q-pt-md">
           <img
-          alt="Quasar logo"
-          src="~assets/QRcode.svg"
-          style="width: 340px"
-        >
+            alt="QrCode"
+            src="~assets/QRcode.svg"
+            style="width: 340px"
+          >
       </div>
     </div>
     <div class="full-width q-pt-xs">
@@ -29,12 +26,20 @@
             @click="turnCameraOn()"
             v-show="!showCamera"
           />
-      </div>
+        </div>
           <p class="text-subtitle1" v-if="result">Dados: <b>{{ result[0].rawValue }}</b></p>
           <div class="qr-code-boundary" v-if="showCamera">
             <qrcode-stream :camera="camera" @detect="onDecode">
             </qrcode-stream>
           </div>
+          <q-btn
+                label="Confirmar Checkin"
+                color="secondary"
+                class="q-mt-md"
+                flat
+                @click="save"
+                v-close-popup
+              />
       </div>
     </div>
   </q-page>

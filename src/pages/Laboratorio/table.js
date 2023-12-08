@@ -1,9 +1,9 @@
-const columnsLaboratorios = [
-  { name: 'name', align: 'left', label: 'Name', field: 'name', sortable: true },
+const columnsLaboratorio = [
+  { name: 'nome', align: 'left', label: 'Nome', field: 'nome', sortable: true },
   { name: 'actions', align: 'right', label: '', field: 'actions', sortable: false }
 
 ]
 
 export {
-  columnsLaboratorios
+  columnsLaboratorio
 }

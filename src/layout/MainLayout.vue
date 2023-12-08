@@ -41,10 +41,8 @@
       bordered
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Menus
+        <q-item-label header>
+          Menu
         </q-item-label>
 
         <EssentialLink
@@ -72,6 +70,12 @@ const linksList = [
     title: 'Home',
     icon: 'mdi-home',
     routeName: 'me'
+  },
+  {
+    title: 'Agendamento',
+    caption: '',
+    icon: 'mdi-calendar',
+    routeName: 'planer'
   },
 
   {
@@ -102,13 +106,6 @@ const linksList = [
   },
 
   {
-    title: 'Frequencia',
-    caption: '',
-    icon: 'mdi-draw',
-    routeName: 'frequencia'
-  },
-
-  {
     title: 'Camera',
     caption: '',
     icon: 'mdi-camera-iris',
@@ -116,10 +113,10 @@ const linksList = [
   },
 
   {
-    title: 'Laboratório',
+    title: 'Frequencia',
     caption: '',
-    icon: 'biotech',
-    routeName: 'laboratorio'
+    icon: 'mdi-draw',
+    routeName: 'frequencia'
   },
 
   {
@@ -128,21 +125,36 @@ const linksList = [
     icon: 'mdi-account-check ',
     routeName: 'presenca'
   },
+
+  {
+    title: 'Laboratório',
+    caption: '',
+    icon: 'mdi-microscope',
+    routeName: 'laboratorio'
+  },
+
   {
     title: 'Historico',
     caption: '',
     icon: 'mdi-newspaper-variant-outline',
     routeName: 'historico'
   },
+
   {
-    title: 'Certificados',
-    caption: 'Meus certificados',
-    icon: 'school',
+    title: 'Documentação',
+    caption: '',
+    icon: 'mdi-file-document-multiple',
     routeName: ''
   },
   {
     title: 'Configurações',
-    icon: 'settings',
+    icon: 'mdi-cog',
+    routeName: ''
+  },
+  {
+    title: 'Certificados',
+    caption: '',
+    icon: 'mdi-certificate',
     routeName: ''
   }
 ]

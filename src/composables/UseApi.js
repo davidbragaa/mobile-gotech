@@ -13,15 +13,6 @@ export default function useApi () {
     return data
   }
 
-  const listPublic = async (table, userId) => {
-    const { data, error } = await supabase
-      .from(table)
-      .select('*')
-      .eq('user_id', userId)
-    if (error) throw error
-    return data
-  }
-
   const getById = async (table, id, nome) => {
     const { data, error } = await supabase
       .from(table)
@@ -32,12 +23,14 @@ export default function useApi () {
   }
 
   const post = async (table, form) => {
+    const currentDate = new Date() // Obtém a data atual
     const { data, error } = await supabase
       .from(table)
       .insert([
         {
           ...form,
-          user_id: user.value.id
+          user_id: user.value.id,
+          date_of_scheduling: currentDate.toISOString() // Adiciona a data de agendamento ao inserir
         }
       ])
     if (error) throw error
@@ -54,6 +47,16 @@ export default function useApi () {
     if (error) throw error
     return data
   }
+
+  const saveReservation = async (table, id, agendamento) => {
+    const { data, error } = await supabase
+      .from(table)
+      .update({ agendamento })
+      .match({ id })
+    if (error) throw error
+    return data
+  }
+
   const remove = async (table, id) => {
     const { data, error } = await supabase
       .from(table)
@@ -65,10 +68,10 @@ export default function useApi () {
 
   return {
     list,
-    listPublic,
     getById,
     post,
     update,
+    saveReservation,
     remove
 
   }

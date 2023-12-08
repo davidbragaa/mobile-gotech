@@ -55,8 +55,9 @@
 
             <q-btn
               label="Voltar"
-              color="dark"
+              color="secondary"
               class="full-width"
+              outline
               rounded
               flat
               :to="{name: 'login'}"
@@ -95,7 +96,12 @@ export default defineComponent({
         notifySuccess()
         router.push({
           name: 'email-confirmation',
-          query: { email: form.value.email }
+          query: {
+            email: form.value.email,
+            name: form.value.name,
+            password: form.value.password,
+            tipo: form.value.tipo
+          }
         })
       } catch (error) {
         notifyError(error.message)

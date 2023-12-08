@@ -1,8 +1,8 @@
 <template>
   <q-page padding>
     <div class="row justify-center">
-      <div class="col-12 text-center">
-        <p class="text-h4">
+      <div class="col-12 text-left">
+        <p class="text-h6">
         Frequência
         </p>
       </div>
@@ -27,19 +27,21 @@
 
         <q-btn
           :label="isUpdate ? 'Atualizar' : 'Salvar'"
-          color="primary"
+          color="secondary"
           class="full-width"
+          outline
           rounded
           type="submit"
           />
 
           <q-btn
           label="Voltar"
-          color="primary"
+          color="secondary"
           class="full-width"
+          outline
           rounded
           flat
-          :to="{name: 'frequency'}"
+          :to="{ name: 'frequencia' }"
           />
 
       </q-form>
@@ -65,7 +67,7 @@ export default defineComponent({
 
     const isUpdate = computed(() => route.params.id)
 
-    let frequencia = {}
+    let aluno = {}
     const optionsAluno = ref([])
     const form = ref({
       name: '',
@@ -102,8 +104,8 @@ export default defineComponent({
 
     const handleGetFrequencia = async (id) => {
       try {
-        frequencia = await getById(table, id)
-        form.value = frequencia
+        aluno = await getById(table, id)
+        form.value = aluno
       } catch (error) {
         notifyError(error.message)
       }
