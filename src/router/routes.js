@@ -33,7 +33,8 @@ const routes = [
       { path: 'form-professor/:id?', name: 'form-professor', component: () => import('pages/Professor/Form.vue') },
       { path: 'historico', name: 'historico', component: () => import('pages/Historico/List.vue') },
       { path: 'configuracao', name: 'configuracao', component: () => import('pages/Configuracao/List.vue') },
-      { path: 'planer', name: 'planer', component: () => import('src/pages/Agenda/PlanerList.vue') }
+      { path: 'planer', name: 'planer', component: () => import('src/pages/Agenda/PlanerList.vue') },
+      { path: 'document', name: 'document', component: () => import('src/pages/Documentos/DocPages.vue') }
       // { path: '', component: () => import('pages/Index.vue') }
 
     ],

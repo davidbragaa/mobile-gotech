@@ -1,41 +1,30 @@
 <template>
   <q-page padding>
-    <div style="max-width: 800px; width: 100%;">
-      <q-calendar
-        v-model="selectedDate"
-        view="day-resource"
-        :resources="resources"
-        :resource-height="50"
-        interval-minutes="30"
-        bordered
-        sticky
-        locale="en-us"
-        style="height: 200px; max-width: 800px; width: 100%;"
-      />
+    <div class="row justify-center q-gutter-pt-sm">
+      <h4>Agendamento</h4>
     </div>
-
-      <q-btn
-        color="secondary"
-        icon="mdi-calendar-plus"
-        class="q-mt-md"
-        outline
-        rounded
-        size="lg"
-        @click="showAddEventDialog"
-        label="Adicionar Evento"
-      />
-
-    <q-dialog v-model="addEventDialog">
+    <div class="full-width q-pt-xs">
+      <FullCalendar
+        :options="calendarOptions"
+        @dateClick="openDialog"
+        ref="calendar"
+        mask="DD/MM/YYYY"
+      >
+        <template v-slot:eventContent="arg">
+          <b>{{ arg.timeText }}</b>
+          <i>{{ arg.event.title }}</i>
+        </template>
+      </FullCalendar>
+    </div>
+    <q-dialog v-model="dialog" persistent>
       <q-card>
         <q-card-section>
-          <q-input v-model="newEventName" label="Nome do Evento" />
-          <q-input v-model="newEventStart" label="Data de Início" type="datetime" />
-          <q-input v-model="newEventEnd" label="Data de Fim" type="datetime" />
+          <q-input v-model="meetingTitle" label="Título da Reunião" />
+          <q-datetime v-model="meetingTime" label="Horário" />
         </q-card-section>
-
-        <q-card-actions class="row justify-center q-gutter-pt-sm">
-          <q-btn label="Cancelar" flat color="negative" @click="closeAddEventDialog" />
-          <q-btn label="Adicionar" flat color="positive" @click="addEvent" />
+        <q-card-actions align="right">
+          <q-btn label="Cancelar" color="negative" @click="closeDialog" />
+          <q-btn label="Salvar" color="positive" @click="saveEvent" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -44,74 +33,64 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
+import FullCalendar from '@fullcalendar/vue3'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from '@fullcalendar/interaction'
 import useApi from 'src/composables/UseApi'
 
 export default defineComponent({
   name: 'PagePlanerList',
+  components: {
+    FullCalendar // make the <FullCalendar> tag available
+  },
   setup () {
-    const model = ref('2023-11-17')
+    const calendar = ref(null)
     const api = useApi()
-    const events = ref([])
-    const addEventDialog = ref(false)
-    const newEventName = ref('')
-    const newEventStart = ref('')
-    const newEventEnd = ref('')
 
-    const form = ref({
-      date: null
-    })
-
-    const showAddEventDialog = () => {
-      addEventDialog.value = true
+    const calendarOptions = {
+      plugins: [dayGridPlugin, interactionPlugin],
+      initialView: 'dayGridMonth',
+      selectable: true // Habilita a seleção de datas
     }
 
-    const closeAddEventDialog = () => {
-      addEventDialog.value = false
-      newEventName.value = ''
-      newEventStart.value = ''
-      newEventEnd.value = ''
+    const dialog = ref(false)
+    const meetingTitle = ref('')
+    const meetingTime = ref('')
+
+    const openDialog = (info) => {
+      dialog.value = true
+      meetingTitle.value = ''
+      meetingTime.value = info.dateStr // Preenche com a data clicada
     }
 
-    const addEvent = async () => {
-      const currentDate = new Date() // Obtém a data atual
-      const newEvent = {
-        name: newEventName.value,
-        start: newEventStart.value,
-        end: newEventEnd.value,
-        date_of_scheduling: currentDate.toISOString(), // Adiciona a data de agendamento
-        color: 'blue' // Adapte conforme necessário
-      }
+    const closeDialog = () => {
+      dialog.value = false
+    }
 
+    const saveEvent = async () => {
       try {
-        await api.post('events', newEvent) // Adicionando um novo evento usando a função post do useApi
-        events.value.push(newEvent) // Atualizando localmente a lista de eventos
-        closeAddEventDialog()
+        await api.post('seu_tabela', {
+          title: meetingTitle.value,
+          start: meetingTime.value
+          // Adicione outros campos conforme necessário para seu modelo de dados
+        })
+
+        dialog.value = false
       } catch (error) {
-        console.error('Erro ao adicionar evento:', error)
+        console.error('Erro ao adicionar evento:', error.message)
+        // Lida com o erro de inserção, se necessário
       }
     }
 
     return {
-      model,
-      events,
-      form,
-      addEventDialog,
-      newEventName,
-      newEventStart,
-      newEventEnd,
-      showAddEventDialog,
-      closeAddEventDialog,
-      addEvent,
-      selectedDate: '',
-      resources: [
-        { label: 'Laboratorio I' },
-        { label: 'Laboratorio II' },
-        { label: 'Laboratorio III' },
-        { label: 'Laboratorio IV' },
-        { label: 'Laboratorio V' },
-        { label: 'Laboratorio VI' },
-        { label: 'Sala Maker' }
-      ]
+      calendar,
+      calendarOptions,
+      dialog,
+      meetingTitle,
+      meetingTime,
+      openDialog,
+      closeDialog,
+      saveEvent
     }
   }
 })

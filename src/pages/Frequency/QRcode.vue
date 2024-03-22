@@ -1,26 +1,40 @@
 <template>
   <q-page padding>
+    <div class="row justify-center q-gutter-pt-sm">
+      <div class="col-12 text-center q-pt-md">
+        <img
+          alt="Envio"
+          src="~assets/books.png"
+          style="width: 150px"
+        >
+      </div>
+    </div>
     <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-sm">
-        <span class="text-h6 text-left">
+        <span class="text-h6 text-center">
             Disciplinas
         </span>
           <q-space />
+          <div class="full-width q-pt-xs">
             <q-select
               standout
               label= "Curso"
               v-model="selectedCurso"
-              dense
+              class="full-width"
+              color="secondary"
               outlined
               rounded
+              size="md"
               :options= "opções"
             />
+          </div>
             <q-select
               standout
               label="Disciplinas"
               v-model="selectedDisciplina"
-              dense
+              color="secondary"
               rounded
               outlined
+              size="md"
               :options="disciplinas"
               option-label="nome"
             />
@@ -29,6 +43,7 @@
               color="secondary"
               icon="mdi-qrcode"
               rounded
+              outline
               @click="gerarQrCode"
             />
         <div v-if="selectedDisciplina">
@@ -60,7 +75,7 @@ export default defineComponent({
     const { notifyError } = useNotify()
     const table = 'Disciplinas'
     const loading = ref(true)
-    const selectedCurso = ref(null)
+    const selectedCurso = ref('')
 
     const { list } = useApi() // Mova a instância da API para fora das funções para reutilização
 

@@ -4,13 +4,13 @@
       <div v-if="!showCamera" class="col-12 text-center q-pt-md">
           <img
             alt="QrCode"
-            src="~assets/QRcode.svg"
+            src="~assets/QRcoder.png"
             style="width: 340px"
           >
       </div>
     </div>
     <div class="full-width q-pt-xs">
-       <div class="col-12 text-center">
+      <div class="col-12 text-center">
         <span class="text-subtitle2 text-grey-9">
           {{ textInfo }}
         </span>
@@ -64,12 +64,10 @@ export default {
 
     const isUpdate = computed(() => route.params.id)
 
-    // const isValid = ref(undefined)
     const camera = ref('auto')
     const result = ref(null)
     const showCamera = ref(false)
 
-    // const textInfo = ref('')
     const freq = ref(null)
 
     const turnCameraOn = () => {

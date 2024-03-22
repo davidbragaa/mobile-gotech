@@ -5,12 +5,12 @@
       <p class="col-12 text-h4 text-center">Login</p>
       <div class="col-md-4 col-sm-6 col-xs-10 q-gutter-y-sm">
       <q-input
-      label="Email"
-      v-model="form.email"
-      lazy-rules=""
-      :rules="[val => (val && val.length > 0) || 'Email is required']"
-      type="email"
-      color="secondary"
+        label="Email"
+        v-model="form.email"
+        lazy-rules=""
+        :rules="[val => (val && val.length > 0) || 'Email is required']"
+        type="email"
+        color="secondary"
       />
 
       <q-input
@@ -20,7 +20,7 @@
         :rules="[val => (val && val.length >= 6) || 'Password is required']"
         type="password"
         color="secondary"
-        />
+      />
 
         <div class="full-width q-pt-md">
           <q-btn
@@ -29,7 +29,7 @@
           class="full-width"
           outline
           rounded
-          size="lg"
+          size="md"
           type="submit"
           />
         </div>

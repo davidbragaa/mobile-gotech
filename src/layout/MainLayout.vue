@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" >
     <q-header elevated>
       <q-toolbar class="navbar">
         <q-btn
@@ -10,28 +10,23 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
+        <dark-mode-toogle/>
         <q-toolbar-title class="flex flex-center">
           <img
             alt="Go Tech"
             src="~assets/Logo-redondo.png"
-            style="width: 200px; height: 200px"
+            style="width: 150px; height: 150px"
           >
         </q-toolbar-title>
-
-        <q-btn-dropdown
-          flat color="white"
-          icon="mdi-account-off"
-          >
-          <q-list>
-            <q-item clickable v-close-popup @click="handleLogout">
-              <q-item-section>
-                <q-item-label>Logout</q-item-label>
-              </q-item-section>
-            </q-item>
-            </q-list>
-        </q-btn-dropdown>
-
+          <q-btn-dropdown flat color="white" icon="mdi-account-off">
+            <q-list>
+              <q-item clickable v-close-popup @click="handleLogout">
+                <q-item-section>
+                  <q-item-label>Logout</q-item-label>
+                </q-item-section>
+              </q-item>
+              </q-list>
+          </q-btn-dropdown>
       </q-toolbar>
     </q-header>
 
@@ -55,7 +50,15 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition
+          appear
+          enter-active-class="animated fadeInUp"
+          leave-active-class="animated fadeOutDow"
+        >
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </q-page-container>
   </q-layout>
 </template>
@@ -63,6 +66,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import DarkModeToogle from 'src/components/DarkModeToogle.vue'
 import { useRouter } from 'vue-router'
 
 const linksList = [
@@ -72,7 +76,7 @@ const linksList = [
     routeName: 'me'
   },
   {
-    title: 'Agendamento',
+    title: 'Agenda',
     caption: '',
     icon: 'mdi-calendar',
     routeName: 'planer'
@@ -144,7 +148,7 @@ const linksList = [
     title: 'Documentação',
     caption: '',
     icon: 'mdi-file-document-multiple',
-    routeName: ''
+    routeName: 'document'
   },
   {
     title: 'Configurações',
@@ -168,7 +172,8 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink
+    EssentialLink,
+    DarkModeToogle
   },
 
   setup () {

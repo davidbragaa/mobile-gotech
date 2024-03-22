@@ -19,6 +19,7 @@
               color="secondary"
               icon="mdi-plus"
               dense
+              rounded
               :to="{ name: 'form-professor' }"
               />
         </template>
@@ -54,7 +55,7 @@
       </q-table>
     </div>
       <q-page-sticky
-        position="bottom-left"
+        position="bottom-right"
         :offset="[18, 18]"
       >
         <q-btn

@@ -48,13 +48,17 @@ export default function useApi () {
     return data
   }
 
-  const saveReservation = async (table, id, agendamento) => {
-    const { data, error } = await supabase
-      .from(table)
-      .update({ agendamento })
-      .match({ id })
-    if (error) throw error
-    return data
+  const saveReservation = async (table, id, reservationDate) => {
+    try {
+      const { data, error } = await supabase
+        .from(table)
+        .update({ reservationDate })
+        .match({ id })
+      if (error) throw error
+      return data
+    } catch (error) {
+      throw new Error('Erro ao salvar reserva: ' + error.message)
+    }
   }
 
   const remove = async (table, id) => {

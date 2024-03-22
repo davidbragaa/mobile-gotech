@@ -7,7 +7,7 @@
         <div class="col-6 text-center q-pt-md">
           <img
             alt="Image"
-            src="~assets/Educator.png"
+            src="~assets/Educator1.png"
             style="width: 400px"
           >
         </div>
